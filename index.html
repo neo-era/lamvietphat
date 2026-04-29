@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lavipco | Công ty TNHH Kỹ Nghệ Lâm Việt Phát</title>
+  <meta name="description" content="Lavipco — Giải pháp chiếu sáng thông minh, thi công hệ thống điện, chiếu sáng đô thị, điện mặt trời tại TP.HCM." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:        #070707;
+  --s1:        #0d0d0d;
+  --s2:        #141414;
+  --s3:        #1c1c1c;
+  --ln:        #232323;
+  --ln2:       #2e2e2e;
+  --fg:        #f8f8f8;
+  --fg2:       #9a9a9a;
+  --fg3:       #4a4a4a;
+
+  /* brand */
+  --b0: #1d4ed8;
+  --b1: #3b82f6;
+  --b2: #60a5fa;
+  --c1: #06b6d4;
+  --c2: #67e8f9;
+  --glow: rgba(59,130,246,.15);
+
+  --max: 1160px;
+  --pad: clamp(1.25rem,4vw,2.5rem);
+  --sp:  clamp(6rem,12vw,10rem);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════ */
+.w { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+.gt {
+  background: linear-gradient(110deg, var(--b2) 0%, var(--c1) 55%, var(--c2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Divider */
+hr.div {
+  border: none; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--ln) 20%, var(--ln) 80%, transparent 100%);
+}
+
+/* Tag label */
+.tag {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--b1);
+}
+.tag::before, .tag::after { content:''; display:block; width:18px; height:1px; background:var(--b1); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .6rem 1.3rem; border-radius: 8px;
+  font-size: .875rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all .2s; white-space: nowrap; font-family: inherit;
+}
+.btn-p {
+  background: linear-gradient(135deg, var(--b0) 0%, var(--b1) 100%);
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(59,130,246,.3), 0 4px 20px rgba(59,130,246,.25);
+}
+.btn-p:hover { opacity:.9; transform:translateY(-1px); box-shadow: 0 0 0 1px rgba(59,130,246,.4), 0 6px 28px rgba(59,130,246,.4); }
+.btn-o { background:transparent; color:var(--fg); border:1px solid var(--ln2); }
+.btn-o:hover { background:var(--s2); border-color:#3a3a3a; }
+.btn-lg { padding:.75rem 1.75rem; font-size:.95rem; border-radius:10px; }
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:none; }
+}
+/* JS adds .js-loaded to body; without it everything is visible (SSR / no-JS safe) */
+body.js-loaded .rev {
+  opacity:0;
+  animation: fadeUp .65s cubic-bezier(.22,.68,0,1.1) forwards;
+  animation-play-state: paused;
+}
+body.js-loaded .rev.on { animation-play-state: running; }
+.d1{animation-delay:.08s} .d2{animation-delay:.16s} .d3{animation-delay:.24s}
+.d4{animation-delay:.32s} .d5{animation-delay:.40s} .d6{animation-delay:.48s}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+#nav {
+  position: fixed; inset: 0 0 auto; z-index: 900;
+  padding: .85rem 0;
+  border-bottom: 1px solid transparent;
+  transition: background .35s, border-color .35s, backdrop-filter .35s;
+}
+#nav.sk {
+  background: rgba(7,7,7,.85);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: var(--ln);
+}
+.nav-i { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+.nav-logo { display:flex; align-items:center; gap:.55rem; text-decoration:none; }
+.nav-logo img { height:34px; width:auto; }
+
+.nav-ul { display:none; list-style:none; gap:2rem; }
+@media(min-width:768px){ .nav-ul{ display:flex; } }
+.nav-ul a { color:var(--fg2); text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
+.nav-ul a:hover { color:var(--fg); }
+
+.nav-right { display:flex; align-items:center; gap:.75rem; }
+.nav-cta { display:none; }
+@media(min-width:768px){ #nav.sk .nav-cta{ display:inline-flex; } }
+
+/* hamburger */
+.ham { display:flex; flex-direction:column; gap:5px; cursor:pointer; padding:6px; }
+@media(min-width:768px){ .ham{ display:none; } }
+.ham s { display:block; width:22px; height:2px; background:var(--fg2); border-radius:2px; text-decoration:none; transition:all .3s; }
+.ham.o s:nth-child(1){ transform:rotate(45deg) translate(5px,5px); }
+.ham.o s:nth-child(2){ opacity:0; transform:scaleX(0); }
+.ham.o s:nth-child(3){ transform:rotate(-45deg) translate(5px,-5px); }
+
+/* drawer */
+#drw {
+  position:fixed; inset:0; z-index:899;
+  background:rgba(7,7,7,.97); backdrop-filter:blur(20px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem;
+  opacity:0; pointer-events:none; transition:opacity .3s;
+}
+#drw.o { opacity:1; pointer-events:all; }
+#drw a { color:var(--fg); text-decoration:none; font-size:1.6rem; font-weight:800; }
+#drw a:hover { color:var(--b2); }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 100svh;
+  display: flex; align-items: center;
+  padding: 5.5rem 0 3rem;
+  position: relative; overflow: hidden;
+}
+
+/* ambient glows */
+.h-ga {
+  position:absolute; pointer-events:none; border-radius:50%;
+  background: radial-gradient(circle, rgba(59,130,246,.22) 0%, transparent 65%);
+  width:1100px; height:700px;
+  top:-20%; left:50%; transform:translateX(-50%);
+}
+.h-gb {
+  position:absolute; pointer-events:none; border-radius:50%;
+  background: radial-gradient(circle, rgba(6,182,212,.14) 0%, transparent 65%);
+  width:700px; height:600px;
+  top:20%; right:-15%;
+}
+.h-gc {
+  position:absolute; pointer-events:none; border-radius:50%;
+  background: radial-gradient(circle, rgba(29,78,216,.16) 0%, transparent 65%);
+  width:600px; height:500px;
+  bottom:-5%; left:-8%;
+}
+
+/* dot grid */
+.h-dots {
+  position:absolute; inset:0; pointer-events:none;
+  background-image: radial-gradient(circle, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, black 20%, transparent 100%);
+}
+
+.h-body {
+  position:relative; z-index:1;
+  max-width:860px; margin:0 auto; text-align:center;
+}
+
+.h-pill {
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.32rem .95rem; margin-bottom:2rem;
+  background:rgba(59,130,246,.08); border:1px solid rgba(59,130,246,.22);
+  border-radius:100px; font-size:.75rem; font-weight:600; color:var(--b2);
+}
+.h-dot {
+  width:6px; height:6px; border-radius:50%; background:var(--c1);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.75)} }
+
+.h-h1 {
+  font-size: clamp(2.8rem,8vw,5.6rem);
+  font-weight:900; line-height:1.06; letter-spacing:-.035em;
+  margin-bottom:1.4rem;
+}
+
+.h-p {
+  font-size: clamp(.95rem,2vw,1.15rem);
+  color:var(--fg2); max-width:560px; margin:0 auto 2.5rem; line-height:1.8;
+}
+
+.h-btns { display:flex; gap:.85rem; justify-content:center; flex-wrap:wrap; margin-bottom:4rem; }
+
+/* stats card */
+.h-card {
+  background:var(--s1); border:1px solid var(--ln);
+  border-radius:18px; overflow:hidden; position:relative;
+}
+.h-card::before {
+  content:''; position:absolute; top:0; left:15%; right:15%; height:1px;
+  background: linear-gradient(90deg,transparent,var(--b1),transparent);
+}
+.h-stats { display:grid; grid-template-columns:repeat(2,1fr); }
+@media(min-width:500px){ .h-stats { grid-template-columns:repeat(4,1fr); } }
+.hs {
+  padding:1.75rem 1.25rem; text-align:center;
+  border-right:1px solid var(--ln); border-bottom:1px solid var(--ln);
+}
+.hs:nth-child(2n){ border-right:none; }
+.hs:nth-child(3),.hs:nth-child(4){ border-bottom:none; }
+@media(min-width:500px){
+  .hs{ border-right:1px solid var(--ln); border-bottom:none; }
+  .hs:last-child{ border-right:none; }
+}
+.hs-n {
+  font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:900; line-height:1;
+  background:linear-gradient(135deg,var(--b2),var(--c2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.hs-l { font-size:.68rem; color:var(--fg3); text-transform:uppercase; letter-spacing:.09em; margin-top:.4rem; display:block; }
+
+/* bottom glow line */
+.h-line {
+  position:absolute; bottom:-1px; left:50%; transform:translateX(-50%);
+  width:500px; height:1px;
+  background: linear-gradient(90deg,transparent,var(--b1),transparent);
+  filter:blur(1px);
+}
+
+/* ═══════════════════════════════════════════
+   CLIENTS BAR
+═══════════════════════════════════════════ */
+#clients {
+  padding:2.75rem 0;
+  border-top:1px solid var(--ln); border-bottom:1px solid var(--ln);
+  background:var(--s1);
+}
+.cl-lbl { text-align:center; font-size:.68rem; color:var(--fg3); text-transform:uppercase; letter-spacing:.14em; margin-bottom:1.6rem; }
+.cl-row { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; }
+.cl-item {
+  display:flex; align-items:center; gap:.5rem;
+  font-size:.82rem; font-weight:600; color:var(--fg3);
+  letter-spacing:.02em; transition:color .2s;
+}
+.cl-item:hover { color:var(--fg2); }
+.cl-ic {
+  width:26px; height:26px; border-radius:6px;
+  background:var(--s2); border:1px solid var(--ln2);
+  display:flex; align-items:center; justify-content:center; font-size:.85rem;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION SHARED
+═══════════════════════════════════════════ */
+.sec { padding: var(--sp) 0; }
+.sec-alt { background: var(--s1); }
+
+/* Big editorial heading — resend-style */
+.ed-head {
+  display:grid; grid-template-columns:1fr;
+  gap:2rem; margin-bottom:3.5rem;
+  padding-bottom:3.5rem; border-bottom:1px solid var(--ln);
+}
+@media(min-width:900px){
+  .ed-head { grid-template-columns:1fr 1fr; align-items:end; }
+}
+.ed-h2 {
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  font-weight:900; letter-spacing:-.03em; line-height:1.1;
+}
+.ed-p { color:var(--fg2); font-size:1rem; line-height:1.8; max-width:420px; }
+.ed-p p { margin-bottom:1rem; }
+.ed-p a.more {
+  display:inline-flex; align-items:center; gap:.4rem;
+  color:var(--b2); font-size:.875rem; font-weight:600; text-decoration:none;
+  transition:gap .2s;
+}
+.ed-p a.more:hover { gap:.7rem; }
+
+/* centered head (for stats etc.) */
+.c-head { text-align:center; margin-bottom:3.5rem; }
+.c-h2 {
+  font-size:clamp(2rem,4.5vw,3.5rem);
+  font-weight:900; letter-spacing:-.03em; line-height:1.12;
+  margin-bottom:.8rem;
+}
+.c-p { color:var(--fg2); max-width:500px; margin:0 auto; font-size:1rem; line-height:1.8; }
+
+/* ═══════════════════════════════════════════
+   SERVICES — grid with visible borders
+═══════════════════════════════════════════ */
+.srv-grid {
+  display:grid; gap:0;
+  background:var(--ln);
+  border:1px solid var(--ln); border-radius:16px; overflow:hidden;
+  grid-template-columns:1fr;
+}
+@media(min-width:640px){ .srv-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(min-width:1024px){ .srv-grid{ grid-template-columns:repeat(3,1fr); } }
+
+.srv {
+  background:var(--s1); padding:2.5rem 2.25rem;
+  border-right:1px solid var(--ln); border-bottom:1px solid var(--ln);
+  transition:background .25s;
+  position:relative; overflow:hidden;
+}
+@media(min-width:1024px){
+  .srv:nth-child(3n){ border-right:none; }
+  .srv:nth-child(4),.srv:nth-child(5),.srv:nth-child(6){ border-bottom:none; }
+}
+@media(min-width:640px) and (max-width:1023px){
+  .srv:nth-child(2n){ border-right:none; }
+  .srv:nth-child(5),.srv:nth-child(6){ border-bottom:none; }
+}
+@media(max-width:639px){
+  .srv{ border-right:none; }
+  .srv:last-child{ border-bottom:none; }
+}
+.srv::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--b1),transparent);
+  opacity:0; transition:opacity .3s;
+}
+.srv:hover { background:var(--s2); }
+.srv:hover::before { opacity:1; }
+
+.srv-ic {
+  width:46px; height:46px; border-radius:10px; margin-bottom:1.25rem;
+  background:linear-gradient(135deg,var(--b0),var(--c1));
+  display:flex; align-items:center; justify-content:center; font-size:1.25rem;
+  box-shadow:0 4px 16px rgba(59,130,246,.3);
+}
+.srv h3 { font-size:.975rem; font-weight:700; margin-bottom:.5rem; }
+.srv p { font-size:.85rem; color:var(--fg2); line-height:1.75; }
+.srv-lnk {
+  display:inline-flex; align-items:center; gap:.35rem;
+  color:var(--b2); font-size:.78rem; font-weight:600;
+  text-decoration:none; margin-top:1.1rem; transition:gap .2s;
+}
+.srv-lnk:hover { gap:.6rem; }
+
+/* ═══════════════════════════════════════════
+   HIGHLIGHT SPLIT — editorial text + visual
+═══════════════════════════════════════════ */
+.hl {
+  display:grid; grid-template-columns:1fr; gap:3rem; align-items:center;
+}
+@media(min-width:900px){
+  .hl { grid-template-columns:1fr 1fr; gap:5rem; }
+  .hl.rev-col { direction:rtl; }
+  .hl.rev-col > * { direction:ltr; }
+}
+.hl-text {}
+.hl-text .tag { margin-bottom:1.25rem; }
+.hl-text h2 {
+  font-size:clamp(2rem,4.5vw,3.25rem);
+  font-weight:900; letter-spacing:-.03em; line-height:1.12;
+  margin-bottom:1rem;
+}
+.hl-text p { color:var(--fg2); font-size:.975rem; line-height:1.8; margin-bottom:1.5rem; }
+.hl-text ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; margin-bottom:1.75rem; }
+.hl-text li {
+  display:flex; align-items:flex-start; gap:.65rem;
+  font-size:.875rem; color:var(--fg2);
+}
+.hl-text li::before {
+  content:'✓'; flex-shrink:0; width:20px; height:20px; border-radius:50%;
+  background:rgba(59,130,246,.12); border:1px solid rgba(59,130,246,.25);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.65rem; color:var(--b2); font-weight:700;
+  line-height:20px; text-align:center;
+}
+
+.hl-visual {
+  background:var(--s1); border:1px solid var(--ln); border-radius:18px;
+  overflow:hidden; position:relative; min-height:320px;
+  display:flex; align-items:center; justify-content:center;
+}
+.hl-visual::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,var(--b1),transparent);
+}
+
+/* project visual card inside highlight */
+.proj-card {
+  width:100%; padding:2rem;
+  display:flex; flex-direction:column; gap:1rem;
+}
+.proj-card-header {
+  display:flex; align-items:center; gap:.75rem;
+  padding-bottom:1rem; border-bottom:1px solid var(--ln);
+}
+.proj-card-dot { width:10px; height:10px; border-radius:50%; }
+.proj-card-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.65rem .85rem; background:var(--s2); border:1px solid var(--ln2);
+  border-radius:8px; font-size:.78rem;
+}
+.proj-card-row span:first-child { color:var(--fg2); }
+.proj-card-row span:last-child { color:var(--b2); font-weight:600; font-size:.72rem; }
+.proj-badge {
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:.25rem .7rem; background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.2);
+  border-radius:100px; font-size:.7rem; font-weight:600; color:var(--b2);
+}
+
+/* process visual */
+.proc-visual {
+  display:flex; flex-direction:column; gap:0;
+  width:100%;
+}
+.proc-row {
+  display:flex; align-items:center; gap:1rem;
+  padding:1rem 1.5rem; border-bottom:1px solid var(--ln);
+  transition:background .2s;
+}
+.proc-row:last-child { border-bottom:none; }
+.proc-row:hover { background:var(--s2); }
+.proc-row-num {
+  width:32px; height:32px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(135deg,var(--b0),var(--c1));
+  display:flex; align-items:center; justify-content:center;
+  font-size:.72rem; font-weight:800;
+}
+.proc-row-text h4 { font-size:.85rem; font-weight:700; }
+.proc-row-text p { font-size:.75rem; color:var(--fg3); }
+.proc-row-tag {
+  margin-left:auto; flex-shrink:0;
+  padding:.2rem .6rem; border-radius:100px;
+  font-size:.65rem; font-weight:700; letter-spacing:.06em;
+}
+.tag-done { background:rgba(22,163,74,.15); color:#4ade80; }
+.tag-act  { background:rgba(59,130,246,.15); color:var(--b2); }
+.tag-wait { background:rgba(255,255,255,.05); color:var(--fg3); }
+
+/* ═══════════════════════════════════════════
+   PROJECTS — bento grid
+═══════════════════════════════════════════ */
+.bento {
+  display:grid; gap:1rem;
+  grid-template-columns:1fr;
+}
+@media(min-width:700px){
+  .bento { grid-template-columns:repeat(12,1fr); }
+  .b1 { grid-column:span 7; }
+  .b2 { grid-column:span 5; }
+  .b3,.b4,.b5 { grid-column:span 4; }
+}
+
+.bc {
+  border-radius:16px; overflow:hidden;
+  border:1px solid var(--ln); position:relative;
+  min-height:260px; cursor:pointer;
+  transition:transform .3s cubic-bezier(.22,.68,0,1.2), box-shadow .3s;
+}
+.bc:hover { transform:scale(1.018); box-shadow:0 24px 60px rgba(0,0,0,.6); }
+@media(min-width:700px){ .b1,.b2{ min-height:320px; } }
+
+.bc-bg {
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:5.5rem;
+}
+.bc-ov {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(7,7,7,.88) 0%, rgba(7,7,7,.25) 50%, rgba(7,7,7,0) 100%);
+}
+.bc-body {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:2rem 1.75rem 1.75rem;
+}
+.bc-cat { font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; color:var(--c1); font-weight:700; margin-bottom:.45rem; }
+.bc-t { font-size:1.05rem; font-weight:700; line-height:1.3; margin-bottom:.35rem; }
+.bc-m { font-size:.8rem; color:var(--fg2); }
+
+/* top accent line on each card */
+.bc::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px; z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(59,130,246,.5),transparent);
+}
+
+/* ═══════════════════════════════════════════
+   STATS
+═══════════════════════════════════════════ */
+.stats-g {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:3rem 2rem;
+  position:relative;
+}
+@media(min-width:768px){ .stats-g { grid-template-columns:repeat(4,1fr); } }
+
+.st { text-align:center; }
+.st-n {
+  font-size:clamp(3rem,6.5vw,5rem); font-weight:900; line-height:1; display:block;
+  background:linear-gradient(135deg,var(--b2),var(--c2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  filter: drop-shadow(0 0 20px rgba(96,165,250,.3));
+}
+.st-bar { width:40px; height:2px; margin:.75rem auto; background:linear-gradient(90deg,var(--b0),var(--c1)); }
+.st-l { color:var(--fg2); font-size:.875rem; line-height:1.5; }
+
+/* ═══════════════════════════════════════════
+   WHY US
+═══════════════════════════════════════════ */
+.why-g {
+  display:grid; gap:0;
+  background:var(--ln); border:1px solid var(--ln);
+  border-radius:16px; overflow:hidden;
+  grid-template-columns:1fr;
+}
+@media(min-width:640px){ .why-g{ grid-template-columns:repeat(2,1fr); } }
+@media(min-width:1024px){ .why-g{ grid-template-columns:repeat(4,1fr); } }
+.wi {
+  background:var(--s1); padding:2rem 1.75rem;
+  border-right:1px solid var(--ln); border-bottom:1px solid var(--ln);
+  transition:background .25s;
+}
+@media(min-width:1024px){ .wi:last-child{ border-right:none; } .wi:nth-child(n+3){ border-bottom:none; } }
+.wi:hover { background:var(--s2); }
+.wi-n { font-size:.68rem; color:var(--b1); font-weight:700; letter-spacing:.1em; margin-bottom:.9rem; display:block; }
+.wi h3 { font-size:.975rem; font-weight:700; margin-bottom:.55rem; }
+.wi p { font-size:.845rem; color:var(--fg2); line-height:1.75; }
+
+/* ═══════════════════════════════════════════
+   TESTIMONIAL / QUOTE
+═══════════════════════════════════════════ */
+.quote-sec { padding:var(--sp) 0; }
+.quote-box {
+  background:var(--s1); border:1px solid var(--ln2); border-radius:24px;
+  padding:clamp(3rem,6vw,5rem); text-align:center; position:relative; overflow:hidden;
+  box-shadow: 0 0 80px rgba(59,130,246,.06);
+}
+.quote-box::before {
+  content:''; position:absolute; top:0; left:10%; right:10%; height:1px;
+  background:linear-gradient(90deg,transparent,var(--b1),transparent);
+}
+.quote-box::after {
+  content:''; position:absolute; bottom:0; left:25%; right:25%; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(59,130,246,.3),transparent);
+}
+.quote-icon { font-size:3rem; margin-bottom:1.5rem; opacity:.3; }
+.quote-text {
+  font-size:clamp(1.4rem,3vw,2.1rem); font-weight:800; line-height:1.35;
+  letter-spacing:-.02em; max-width:800px; margin:0 auto 2rem;
+}
+.quote-author { font-size:.875rem; color:var(--fg3); }
+.quote-author strong { color:var(--fg2); font-weight:600; }
+
+/* ═══════════════════════════════════════════
+   CTA
+═══════════════════════════════════════════ */
+#contact { padding:var(--sp) 0; position:relative; overflow:hidden; }
+.cta-glow {
+  position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(59,130,246,.07) 0%, transparent 70%);
+}
+.cta-box {
+  background:var(--s1); border:1px solid var(--ln);
+  border-radius:24px; text-align:center;
+  padding:clamp(3rem,7vw,5.5rem) clamp(1.5rem,5vw,4.5rem);
+  position:relative; overflow:hidden;
+}
+.cta-box::before {
+  content:''; position:absolute; top:0; left:15%; right:15%; height:1px;
+  background:linear-gradient(90deg,transparent,var(--b1),transparent);
+}
+/* big decorative text */
+.cta-tagline {
+  font-size:clamp(2rem,5vw,4rem); font-weight:900; letter-spacing:-.03em;
+  line-height:1.1; margin-bottom:1rem;
+}
+.cta-sub { color:var(--fg2); max-width:500px; margin:0 auto 2.5rem; font-size:.975rem; line-height:1.8; }
+.cta-btns { display:flex; gap:.85rem; justify-content:center; flex-wrap:wrap; }
+
+.cta-info {
+  display:flex; gap:2.5rem; justify-content:center; flex-wrap:wrap;
+  margin-top:2.5rem; padding-top:2.5rem; border-top:1px solid var(--ln);
+}
+.cta-it { display:flex; align-items:flex-start; gap:.65rem; text-align:left; font-size:.85rem; color:var(--fg2); }
+.cta-ico {
+  width:34px; height:34px; flex-shrink:0; border-radius:8px;
+  background:var(--s2); border:1px solid var(--ln2);
+  display:flex; align-items:center; justify-content:center; font-size:.9rem;
+}
+
+/* big footer cta text — resend.com "Email reimagined" style */
+.final-cta {
+  text-align:center; padding:clamp(7rem,14vw,12rem) 0 clamp(5rem,10vw,8rem);
+  border-top:1px solid var(--ln); position:relative; overflow:hidden;
+}
+.final-cta::before {
+  content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:800px; height:400px; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(59,130,246,.08) 0%, transparent 70%);
+}
+.final-cta h2 {
+  font-size:clamp(3rem,9vw,7rem); font-weight:900;
+  letter-spacing:-.045em; line-height:1.02; margin-bottom:1.5rem;
+}
+.final-cta p { color:var(--fg2); margin-bottom:2.5rem; font-size:1.05rem; }
+.final-cta .btns { display:flex; gap:.85rem; justify-content:center; flex-wrap:wrap; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { border-top:1px solid var(--ln); padding:4rem 0 2rem; background:var(--bg); }
+.ft-g {
+  display:grid; gap:2.5rem; grid-template-columns:1fr; margin-bottom:3rem;
+}
+@media(min-width:768px){ .ft-g{ grid-template-columns:1.8fr 1fr 1fr 1.5fr; gap:2rem; } }
+.ft-brand img { height:36px; width:auto; margin-bottom:.85rem; }
+.ft-brand p { font-size:.82rem; color:var(--fg3); line-height:1.75; max-width:250px; }
+.ft-col h5 { font-size:.68rem; text-transform:uppercase; letter-spacing:.12em; color:var(--fg3); font-weight:700; margin-bottom:1.1rem; }
+.ft-col ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+.ft-col a { color:var(--fg2); text-decoration:none; font-size:.865rem; transition:color .2s; }
+.ft-col a:hover { color:var(--fg); }
+.ft-ci { display:flex; gap:.5rem; font-size:.82rem; color:var(--fg3); line-height:1.55; margin-bottom:.55rem; }
+.ft-ci span:first-child { color:var(--b1); flex-shrink:0; }
+.ft-bot {
+  padding-top:2rem; border-top:1px solid var(--ln);
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+}
+.ft-bot p { font-size:.77rem; color:var(--fg3); }
+.socs { display:flex; gap:.5rem; }
+.soc {
+  width:32px; height:32px; border-radius:7px;
+  background:var(--s1); border:1px solid var(--ln);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--fg3); text-decoration:none; font-size:.8rem; font-weight:700;
+  transition:all .2s;
+}
+.soc:hover { border-color:var(--b1); color:var(--b2); }
+
+/* ═══════════════════════════════════════════
+   ABOUT COMPANY — reuse .hl layout
+═══════════════════════════════════════════ */
+.about-badge {
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.3rem .9rem; background:rgba(59,130,246,.07); border:1px solid rgba(59,130,246,.18);
+  border-radius:100px; font-size:.7rem; font-weight:600; color:var(--b2); margin-bottom:1.4rem;
+}
+
+/* ═══════════════════════════════════════════
+   CERTIFICATES
+═══════════════════════════════════════════ */
+.cert-g {
+  display:grid; gap:1rem; grid-template-columns:repeat(2,1fr);
+}
+@media(min-width:640px){ .cert-g{ grid-template-columns:repeat(4,1fr); } }
+
+.cert-card {
+  background:var(--s1); border:1px solid var(--ln); border-radius:14px;
+  padding:1.75rem 1.25rem; text-align:center; position:relative; overflow:hidden;
+  transition:border-color .25s, background .25s;
+}
+.cert-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,var(--b1),transparent);
+  opacity:0; transition:opacity .3s;
+}
+.cert-card:hover { border-color:rgba(59,130,246,.4); background:var(--s2); }
+.cert-card:hover::before { opacity:1; }
+.cert-icon { font-size:2rem; margin-bottom:.85rem; }
+.cert-name { font-size:.875rem; font-weight:700; margin-bottom:.4rem; line-height:1.3; }
+.cert-desc { font-size:.75rem; color:var(--fg3); line-height:1.65; }
+
+/* partner logos row */
+.partner-g {
+  display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; align-items:center;
+  margin-top:3rem; padding-top:3rem; border-top:1px solid var(--ln);
+}
+.partner-item {
+  display:flex; align-items:center; gap:.5rem;
+  font-size:.8rem; font-weight:600; color:var(--fg3);
+  padding:.55rem 1.1rem; background:var(--s1); border:1px solid var(--ln);
+  border-radius:8px; transition:all .2s; white-space:nowrap;
+}
+.partner-item:hover { color:var(--fg2); border-color:var(--ln2); background:var(--s2); }
+.partner-ic { font-size:1rem; }
+
+/* ═══════════════════════════════════════════
+   NEWS CARDS
+═══════════════════════════════════════════ */
+.news-g {
+  display:grid; gap:1.5rem; grid-template-columns:1fr;
+}
+@media(min-width:640px){ .news-g{ grid-template-columns:repeat(2,1fr); } }
+@media(min-width:1024px){ .news-g{ grid-template-columns:repeat(3,1fr); } }
+
+.news-card {
+  background:var(--s1); border:1px solid var(--ln); border-radius:16px;
+  overflow:hidden; transition:border-color .25s, transform .25s; cursor:pointer;
+}
+.news-card:hover { border-color:rgba(59,130,246,.4); transform:translateY(-3px); }
+
+.news-img {
+  height:180px; background:var(--s2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:3.5rem; border-bottom:1px solid var(--ln); position:relative; overflow:hidden;
+}
+.news-img-bg {
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center; font-size:5rem; opacity:.18;
+}
+.news-img-label {
+  position:absolute; bottom:.75rem; left:.75rem;
+  font-size:.62rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--c1); background:rgba(7,7,7,.7); padding:.25rem .6rem; border-radius:6px;
+}
+
+.news-body { padding:1.5rem; }
+.news-meta { font-size:.68rem; color:var(--fg3); margin-bottom:.55rem; text-transform:uppercase; letter-spacing:.08em; }
+.news-title { font-size:.975rem; font-weight:700; line-height:1.45; margin-bottom:.65rem; }
+.news-excerpt { font-size:.83rem; color:var(--fg2); line-height:1.75; }
+.news-lnk {
+  display:inline-flex; align-items:center; gap:.35rem;
+  color:var(--b2); font-size:.78rem; font-weight:600;
+  text-decoration:none; margin-top:1rem; transition:gap .2s;
+}
+.news-lnk:hover { gap:.6rem; }
+
+/* ═══════════════════════════════════════════
+   FLOATING CONTACT BUTTONS
+═══════════════════════════════════════════ */
+.float-btns {
+  position:fixed; right:1.25rem; bottom:1.75rem; z-index:800;
+  display:flex; flex-direction:column; gap:.6rem; align-items:center;
+}
+.float-btn {
+  width:50px; height:50px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  text-decoration:none; font-size:1rem; font-weight:800;
+  box-shadow:0 4px 24px rgba(0,0,0,.55); transition:transform .2s, box-shadow .2s;
+}
+.float-btn:hover { transform:scale(1.12); box-shadow:0 8px 32px rgba(0,0,0,.7); }
+.float-call { background:linear-gradient(135deg,var(--b0),var(--b1)); color:#fff; animation:ring 3s ease-in-out infinite; }
+.float-zalo { background:#0068ff; color:#fff; font-size:.85rem; }
+@keyframes ring {
+  0%,90%,100%{transform:scale(1) rotate(0)}
+  92%{transform:scale(1.08) rotate(-12deg)}
+  94%{transform:scale(1.08) rotate(12deg)}
+  96%{transform:scale(1.08) rotate(-8deg)}
+  98%{transform:scale(1.08) rotate(8deg)}
+}
+.float-btn:hover { animation:none; }
+.float-label {
+  font-size:.58rem; font-weight:700; letter-spacing:.05em;
+  color:var(--fg3); text-align:center; margin-top:-.2rem;
+}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--ln2);border-radius:3px}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════ NAV ══════════════════════ -->
+<nav id="nav">
+  <div class="w">
+    <div class="nav-i">
+      <a href="#hero" class="nav-logo">
+        <img src="LOGO_LAVICO-removebg-preview.png" alt="Lavipco" />
+      </a>
+      <ul class="nav-ul">
+        <li><a href="#hero">Trang chủ</a></li>
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#services">Dịch vụ</a></li>
+        <li><a href="#projects">Dự án</a></li>
+        <li><a href="san-pham.html">Sản phẩm</a></li>
+        <li><a href="#chungchi">Chứng chỉ</a></li>
+        <li><a href="#tintuc">Tin tức</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#contact" class="btn btn-p nav-cta">Liên hệ ngay</a>
+        <div class="ham" id="ham" onclick="toggleDrw()">
+          <s></s><s></s><s></s>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div id="drw">
+  <a href="#about"    onclick="closeDrw()">Giới thiệu</a>
+  <a href="#services" onclick="closeDrw()">Dịch vụ</a>
+  <a href="#projects" onclick="closeDrw()">Dự án</a>
+  <a href="san-pham.html" onclick="closeDrw()">Sản phẩm</a>
+  <a href="#chungchi" onclick="closeDrw()">Chứng chỉ</a>
+  <a href="#tintuc"   onclick="closeDrw()">Tin tức</a>
+  <a href="#contact"  onclick="closeDrw()">Liên hệ</a>
+  <a href="#contact" class="btn btn-p btn-lg" onclick="closeDrw()" style="margin-top:.5rem;">Liên hệ ngay</a>
+</div>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section id="hero">
+  <div class="h-ga"></div>
+  <div class="h-gb"></div>
+  <div class="h-gc"></div>
+  <div class="h-dots"></div>
+
+  <div class="w" style="width:100%;">
+    <div class="h-body">
+
+      <div class="h-pill rev on">
+        <span class="h-dot"></span>
+        Thành lập 2014 · Hoạt động toàn quốc · MST 1101748509
+      </div>
+
+      <h1 class="h-h1 rev on d1">
+        Chiếu sáng — tín hiệu<br>
+        <span class="gt">Tận tâm - Chính trực - Tối giản</span>
+      </h1>
+
+      <p class="h-p rev on d2">
+        Lavipco chuyên tư vấn thiết kế, thi công lắp đặt hệ thống chiếu sáng đô thị,
+        đèn tín hiệu giao thông, điện năng lượng mặt trời và sản xuất thiết bị điện
+        — phục vụ cộng đồng trên cả nước.
+      </p>
+
+      <div class="h-btns rev on d3">
+        <a href="#projects" class="btn btn-p btn-lg">
+          Xem dự án của chúng tôi
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-o btn-lg">Tư vấn miễn phí</a>
+      </div>
+
+      <div class="h-card rev on d4">
+        <div class="h-stats">
+          <div class="hs"><span class="hs-n">11+</span><span class="hs-l">Năm kinh nghiệm</span></div>
+          <div class="hs"><span class="hs-n">30+</span><span class="hs-l">Dự án hoàn thành</span></div>
+          <div class="hs"><span class="hs-n">15+</span><span class="hs-l">Nhân sự chuyên môn</span></div>
+          <div class="hs"><span class="hs-n">100%</span><span class="hs-l">Cam kết chất lượng</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="h-line"></div>
+</section>
+
+<!-- ══════════════════════ CLIENTS ══════════════════════ -->
+<div id="clients">
+  <div class="w">
+    <p class="cl-lbl">Chủ đầu tư &amp; nhà thầu chính tiêu biểu</p>
+    <div class="cl-row">
+      <div class="cl-item"><span class="cl-ic">🏭</span>Becamex IDCP</div>
+      <div class="cl-item"><span class="cl-ic">🏗️</span>Ban QLDA Q.Tân Bình</div>
+      <div class="cl-item"><span class="cl-ic">🏖️</span>BQLDA Phú Quốc</div>
+      <div class="cl-item"><span class="cl-ic">🏙️</span>Cty Khang Thông</div>
+      <div class="cl-item"><span class="cl-ic">⚡</span>Cty XD Rạng Đông</div>
+      <div class="cl-item"><span class="cl-ic">🌿</span>Cty Nông Nghiệp Thành Công</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ GIỚI THIỆU ══════════════════════ -->
+<section class="sec" id="about">
+  <div class="w">
+    <div class="hl">
+      <div class="hl-text rev">
+        <div class="tag">Về chúng tôi</div>
+        <h2>Công ty TNHH<br><span class="gt">Kỹ Nghệ Lâm Việt Phát</span></h2>
+        <p>Thành lập năm 2014, Lavipco là đơn vị chuyên tư vấn, thiết kế và thi công các công trình điện — chiếu sáng đô thị, đèn tín hiệu giao thông, điện năng lượng mặt trời — tại TP.HCM và nhiều tỉnh thành trên cả nước.</p>
+        <ul>
+          <li>Hơn 11 năm kinh nghiệm thi công điện quy mô lớn</li>
+          <li>15+ kỹ sư, kỹ thuật viên và công nhân lành nghề</li>
+          <li>30+ công trình hoàn thành trải dài từ Nam ra Trung</li>
+          <li>Giấy phép kinh doanh và chứng chỉ hành nghề đầy đủ</li>
+        </ul>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <a href="#chungchi" class="btn btn-o btn-lg">Xem chứng chỉ &amp; năng lực</a>
+          <a href="#contact" class="btn btn-p btn-lg">Liên hệ ngay →</a>
+        </div>
+      </div>
+      <div class="hl-visual rev d2">
+        <div class="proj-card">
+          <div class="proj-card-header">
+            <div class="proj-card-dot" style="background:#ef4444"></div>
+            <div class="proj-card-dot" style="background:#f59e0b"></div>
+            <div class="proj-card-dot" style="background:#22c55e"></div>
+            <span style="font-size:.75rem;color:var(--fg3);margin-left:.5rem;">Hồ sơ công ty — Lavipco</span>
+          </div>
+          <div class="proj-card-row">
+            <span>🏢 Tên đầy đủ</span>
+            <span class="proj-badge">Kỹ Nghệ Lâm Việt Phát</span>
+          </div>
+          <div class="proj-card-row">
+            <span>📅 Thành lập</span>
+            <span class="proj-badge">22/05/2014</span>
+          </div>
+          <div class="proj-card-row">
+            <span>📍 Địa chỉ</span>
+            <span class="proj-badge">Q.Bình Tân, TP.HCM</span>
+          </div>
+          <div class="proj-card-row">
+            <span>👔 Giám đốc</span>
+            <span class="proj-badge">Nguyễn Kim Thúy Quỳnh</span>
+          </div>
+          <div class="proj-card-row">
+            <span>🔏 MST</span>
+            <span class="proj-badge">1101748509</span>
+          </div>
+          <div class="proj-card-row">
+            <span>⚡ Lĩnh vực</span>
+            <span class="proj-badge">Kỹ thuật điện &amp; chiếu sáng</span>
+          </div>
+          <div class="proj-card-row">
+            <span>🌐 Phạm vi</span>
+            <span class="proj-badge">Toàn quốc · 10+ tỉnh thành</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ SERVICES ══════════════════════ -->
+<section class="sec" id="services">
+  <div class="w">
+    <!-- editorial heading -->
+    <div class="ed-head">
+      <div>
+        <div class="tag rev">Dịch vụ</div>
+        <h2 class="ed-h2 rev d1">Giải pháp kỹ thuật<br><span class="gt">toàn diện cho bạn</span></h2>
+      </div>
+      <div class="ed-p rev d2">
+        <p>Thành lập năm 2014, Lavipco tập trung vào chiếu sáng đô thị, tín hiệu giao thông, điện mặt trời và sản xuất thiết bị điện — với kỹ sư có hơn 15 năm kinh nghiệm thực chiến trên cả nước.</p>
+        <a href="#contact" class="more">Liên hệ tư vấn miễn phí →</a>
+      </div>
+    </div>
+
+    <div class="srv-grid">
+      <div class="srv rev">
+        <div class="srv-ic">💡</div>
+        <h3>Chiếu sáng đường phố &amp; cảnh quan</h3>
+        <p>Tư vấn thiết kế, thi công lắp đặt đèn đường, đèn chiếu sáng kiến trúc và cảnh quan với công nghệ LED hiện đại — theo tiêu chuẩn Bộ Xây dựng, tiết kiệm năng lượng tối đa.</p>
+        <a href="#contact" class="srv-lnk">Tìm hiểu thêm →</a>
+      </div>
+      <div class="srv rev d1">
+        <div class="srv-ic">🚦</div>
+        <h3>Đèn tín hiệu giao thông</h3>
+        <p>Tư vấn thiết kế, giám sát và thi công hệ thống đèn tín hiệu giao thông tại các nút giao đô thị — đảm bảo an toàn giao thông, bền vững theo thời gian.</p>
+        <a href="#contact" class="srv-lnk">Tìm hiểu thêm →</a>
+      </div>
+      <div class="srv rev d2">
+        <div class="srv-ic">☀️</div>
+        <h3>Điện năng lượng mặt trời</h3>
+        <p>Thiết kế, cung cấp vật tư và lắp đặt hệ thống điện mặt trời hòa lưới từ 45kWp đến hơn 1.200kWp cho nhà máy, xí nghiệp và khu công nghiệp toàn quốc.</p>
+        <a href="#contact" class="srv-lnk">Tìm hiểu thêm →</a>
+      </div>
+      <div class="srv rev d1">
+        <div class="srv-ic">🏭</div>
+        <h3>Sản xuất thiết bị điện</h3>
+        <p>Sản xuất trụ đèn trang trí (gang, nhôm đúc), tủ điều khiển đèn đường và tủ điều khiển đèn tín hiệu giao thông — thiết kế theo yêu cầu, kiểu dáng đa dạng.</p>
+        <a href="#contact" class="srv-lnk">Tìm hiểu thêm →</a>
+      </div>
+      <div class="srv rev d2">
+        <div class="srv-ic">🧠</div>
+        <h3>Chiếu sáng thông minh</h3>
+        <p>Tư vấn và triển khai giải pháp chiếu sáng thông minh — hệ thống điều khiển tập trung, giám sát từ xa, tự động điều chỉnh công suất, tiết kiệm chi phí vận hành cho đô thị.</p>
+        <a href="#contact" class="srv-lnk">Tìm hiểu thêm →</a>
+      </div>
+      <div class="srv rev d3">
+        <div class="srv-ic">📦</div>
+        <h3>Đại lý thiết bị điện</h3>
+        <p>Đại lý cung cấp đèn đường LED, đèn pha LED, đèn công viên LED và thiết bị điện chính hãng từ các nhà sản xuất quốc tế — bảo hành chính thức, giá cạnh tranh.</p>
+        <a href="#contact" class="srv-lnk">Tìm hiểu thêm →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ HIGHLIGHT 1 — Dự án ══════════════════════ -->
+<section class="sec" id="projects">
+  <div class="w">
+    <div class="hl">
+      <div class="hl-text rev">
+        <div class="tag">Dự án tiêu biểu</div>
+        <h2>Những công trình<br><span class="gt">chúng tôi tự hào</span></h2>
+        <p>Từ 2014 đến nay, Lavipco đã hoàn thành hơn 30 công trình lớn trải dài từ TP.HCM đến Bình Dương, Long An, Kiên Giang, Bến Tre, Quảng Nam — tổng giá trị thi công hàng chục tỷ đồng.</p>
+        <ul>
+          <li>Chiếu sáng đường phố, khu công nghiệp &amp; khu đô thị mới</li>
+          <li>Điện năng lượng mặt trời hòa lưới công suất lớn</li>
+          <li>Đèn tín hiệu giao thông tại nhiều tỉnh thành</li>
+          <li>Hồ sơ nghiệm thu đầy đủ, bảo hành theo hợp đồng</li>
+        </ul>
+        <a href="#contact" class="btn btn-p">Xem toàn bộ dự án →</a>
+      </div>
+      <div class="hl-visual rev d2">
+        <div class="proj-card">
+          <div class="proj-card-header">
+            <div class="proj-card-dot" style="background:#ef4444"></div>
+            <div class="proj-card-dot" style="background:#f59e0b"></div>
+            <div class="proj-card-dot" style="background:#22c55e"></div>
+            <span style="font-size:.75rem;color:var(--fg3);margin-left:.5rem;">Dự án tiêu biểu — 2024</span>
+          </div>
+          <div class="proj-card-row">
+            <span>💡 Chiếu sáng Mỹ Phước 3 — Bình Dương</span>
+            <span class="proj-badge">✓ 3,2 tỷ · 2018</span>
+          </div>
+          <div class="proj-card-row">
+            <span>🏖️ Mở rộng HTCS Phú Quốc — Kiên Giang</span>
+            <span class="proj-badge">✓ 2,47 tỷ · 2017</span>
+          </div>
+          <div class="proj-card-row">
+            <span>🏙️ Chiếu sáng đường Tân Bình, TP.HCM</span>
+            <span class="proj-badge">✓ 2,37 tỷ · 2023</span>
+          </div>
+          <div class="proj-card-row">
+            <span>☀️ Solar 557kWp — Hóc Môn, TP.HCM</span>
+            <span class="proj-badge">✓ 1,54 tỷ · 2019</span>
+          </div>
+          <div class="proj-card-row">
+            <span>🎡 Happyland Khu phức hợp — Long An</span>
+            <span class="proj-badge">✓ 1,6 tỷ · 2019</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ BENTO GRID ══════════════════════ -->
+<section class="sec sec-alt">
+  <div class="w">
+    <div class="c-head">
+      <div class="tag rev" style="margin-bottom:1rem;">Portfolio</div>
+      <h2 class="c-h2 rev d1">Công trình đã thực hiện</h2>
+      <p class="c-p rev d2">Mỗi dự án là một cam kết — chất lượng kỹ thuật, đúng tiến độ, an toàn tuyệt đối.</p>
+    </div>
+    <div class="bento">
+      <div class="bc b1 rev" style="background:linear-gradient(135deg,#0b1d3a 0%,#1e3a8a 60%,#0ea5e9 100%);">
+        <div class="bc-bg" style="font-size:6rem;opacity:.15;">💡</div>
+        <div class="bc-ov"></div>
+        <div class="bc-body">
+          <p class="bc-cat">Chiếu sáng đô thị · Bình Dương · 2018</p>
+          <p class="bc-t">Lắp đặt HTCS các tuyến đường Mỹ Phước 3</p>
+          <p class="bc-m">Becamex IDCP · Giá trị 3,2 tỷ đồng · Bến Cát, Bình Dương</p>
+        </div>
+      </div>
+      <div class="bc b2 rev d1" style="background:linear-gradient(135deg,#1a0533 0%,#3730a3 60%,#6366f1 100%);">
+        <div class="bc-bg" style="opacity:.15;">🏖️</div>
+        <div class="bc-ov"></div>
+        <div class="bc-body">
+          <p class="bc-cat">Chiếu sáng công cộng · Kiên Giang · 2017</p>
+          <p class="bc-t">Mở rộng HTCS Bãi Vòng — Sân Bay Phú Quốc</p>
+          <p class="bc-m">Cty Bảo Ngọc · Giá trị 2,47 tỷ · Phú Quốc</p>
+        </div>
+      </div>
+      <div class="bc b3 rev" style="background:linear-gradient(135deg,#052e16 0%,#166534 60%,#22c55e 100%);">
+        <div class="bc-bg" style="opacity:.18;">☀️</div>
+        <div class="bc-ov"></div>
+        <div class="bc-body">
+          <p class="bc-cat">Điện mặt trời · Hóc Môn · 2019</p>
+          <p class="bc-t">Solar 557,17 kWp hòa lưới điện lực</p>
+          <p class="bc-m">Cty XD-CN-VT Miền Nam · 1,54 tỷ</p>
+        </div>
+      </div>
+      <div class="bc b4 rev d1" style="background:linear-gradient(135deg,#0c1a3a 0%,#0369a1 60%,#06b6d4 100%);">
+        <div class="bc-bg" style="opacity:.18;">🎡</div>
+        <div class="bc-ov"></div>
+        <div class="bc-body">
+          <p class="bc-cat">Chiếu sáng cảnh quan · Long An · 2019</p>
+          <p class="bc-t">Khu phức hợp Happyland — Bến Lức</p>
+          <p class="bc-m">Cty CP Đầu tư Khang Thông · 1,6 tỷ</p>
+        </div>
+      </div>
+      <div class="bc b5 rev d2" style="background:linear-gradient(135deg,#1c1505 0%,#92400e 60%,#f59e0b 100%);">
+        <div class="bc-bg" style="opacity:.18;">🏙️</div>
+        <div class="bc-ov"></div>
+        <div class="bc-body">
+          <p class="bc-cat">Chiếu sáng đô thị · TP.HCM · 2023</p>
+          <p class="bc-t">Cây xanh &amp; chiếu sáng Q.Tân Bình</p>
+          <p class="bc-m">Ban QLDA Q.Tân Bình · 2,37 tỷ</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ CHỨNG CHỈ & ĐỐI TÁC ══════════════════════ -->
+<section class="sec" id="chungchi">
+  <div class="w">
+    <div class="ed-head">
+      <div>
+        <div class="tag rev">Năng lực pháp lý</div>
+        <h2 class="ed-h2 rev d1">Chứng chỉ &amp;<br><span class="gt">Đối tác tiêu biểu</span></h2>
+      </div>
+      <div class="ed-p rev d2">
+        <p>Lavipco hoạt động với đầy đủ giấy phép kinh doanh, chứng chỉ năng lực xây dựng và chứng chỉ hành nghề theo quy định của Bộ Xây dựng — đảm bảo tính pháp lý tuyệt đối cho mọi công trình.</p>
+      </div>
+    </div>
+    <div class="cert-g">
+      <div class="cert-card rev">
+        <div class="cert-icon">📋</div>
+        <div class="cert-name">Giấy phép kinh doanh</div>
+        <div class="cert-desc">MST 1101748509 — Sở KH&amp;ĐT TP.HCM cấp · Hiệu lực vĩnh viễn</div>
+      </div>
+      <div class="cert-card rev d1">
+        <div class="cert-icon">🏗️</div>
+        <div class="cert-name">Chứng chỉ năng lực xây dựng</div>
+        <div class="cert-desc">Thi công công trình điện dân dụng, công nghiệp &amp; hạ tầng kỹ thuật</div>
+      </div>
+      <div class="cert-card rev d2">
+        <div class="cert-icon">⚡</div>
+        <div class="cert-name">Chứng chỉ hành nghề điện</div>
+        <div class="cert-desc">Thiết kế, giám sát &amp; thi công hệ thống điện, chiếu sáng &amp; tín hiệu</div>
+      </div>
+      <div class="cert-card rev d3">
+        <div class="cert-icon">☀️</div>
+        <div class="cert-name">Nhà thầu điện mặt trời</div>
+        <div class="cert-desc">Lắp đặt hệ thống solar hòa lưới điện lực quốc gia — đã triển khai hơn 1.200 kWp</div>
+      </div>
+    </div>
+    <div class="partner-g rev d1">
+      <p style="width:100%;text-align:center;font-size:.68rem;color:var(--fg3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:.5rem;">Chủ đầu tư &amp; nhà thầu chính đã hợp tác</p>
+      <div class="partner-item"><span class="partner-ic">🏭</span>Becamex IDCP</div>
+      <div class="partner-item"><span class="partner-ic">🏗️</span>Ban QLDA Q.Tân Bình</div>
+      <div class="partner-item"><span class="partner-ic">🏖️</span>BQLDA Phú Quốc</div>
+      <div class="partner-item"><span class="partner-ic">🏙️</span>Cty CP Khang Thông</div>
+      <div class="partner-item"><span class="partner-ic">⚡</span>Cty XD Rạng Đông</div>
+      <div class="partner-item"><span class="partner-ic">🌿</span>Nông Nghiệp Thành Công</div>
+      <div class="partner-item"><span class="partner-ic">🏢</span>Cty Bảo Ngọc</div>
+      <div class="partner-item"><span class="partner-ic">🔧</span>Cty XD-CN-VT Miền Nam</div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ STATS ══════════════════════ -->
+<section class="sec" id="nang-luc">
+  <div class="w">
+    <div class="c-head">
+      <div class="tag rev" style="margin-bottom:1rem;">Năng lực</div>
+      <h2 class="c-h2 rev d1">Con số nói lên<br><span class="gt">tất cả</span></h2>
+    </div>
+    <div class="stats-g">
+      <div class="st rev">
+        <span class="st-n">11+</span>
+        <div class="st-bar"></div>
+        <p class="st-l">Năm hoạt động<br>kể từ khi thành lập 2014</p>
+      </div>
+      <div class="st rev d1">
+        <span class="st-n">30+</span>
+        <div class="st-bar"></div>
+        <p class="st-l">Công trình lớn đã hoàn thành<br>trên toàn quốc</p>
+      </div>
+      <div class="st rev d2">
+        <span class="st-n">15+</span>
+        <div class="st-bar"></div>
+        <p class="st-l">Kỹ sư, kỹ thuật viên<br>và công nhân lành nghề</p>
+      </div>
+      <div class="st rev d3">
+        <span class="st-n">10+</span>
+        <div class="st-bar"></div>
+        <p class="st-l">Tỉnh thành đã thi công<br>từ Nam ra Trung</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ WHY US ══════════════════════ -->
+<section class="sec sec-alt">
+  <div class="w">
+    <div class="ed-head">
+      <div>
+        <div class="tag rev">Tại sao chọn chúng tôi</div>
+        <h2 class="ed-h2 rev d1">Lavipco —<br><span class="gt">khác biệt cốt lõi</span></h2>
+      </div>
+      <div class="ed-p rev d2">
+        <p>Không chỉ là nhà thầu điện — chúng tôi là đối tác kỹ thuật dài hạn, đồng hành cùng doanh nghiệp bạn từ khâu thiết kế đến vận hành và bảo trì.</p>
+      </div>
+    </div>
+    <div class="why-g rev d1">
+      <div class="wi">
+        <span class="wi-n">01</span>
+        <h3>Kinh nghiệm thực chiến</h3>
+        <p>Hơn 10 năm thi công công trình điện quy mô lớn tại TP.HCM và toàn quốc — đội ngũ đã qua thực tế, không lý thuyết suông.</p>
+      </div>
+      <div class="wi">
+        <span class="wi-n">02</span>
+        <h3>Tiêu chuẩn kỹ thuật cao</h3>
+        <p>Mọi công trình tuân thủ nghiêm ngặt QCVN, TCVN và tiêu chuẩn IEC quốc tế — an toàn tuyệt đối, không nhân nhượng.</p>
+      </div>
+      <div class="wi">
+        <span class="wi-n">03</span>
+        <h3>Cam kết tiến độ</h3>
+        <p>Lập kế hoạch chi tiết, giám sát chặt từng hạng mục, báo cáo minh bạch — bàn giao đúng hẹn, không trễ deadline.</p>
+      </div>
+      <div class="wi">
+        <span class="wi-n">04</span>
+        <h3>Hậu mãi 24/7</h3>
+        <p>Hỗ trợ kỹ thuật 24/7, bảo hành công trình, bảo trì định kỳ — đồng hành lâu dài sau khi bàn giao.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ HIGHLIGHT 2 — Quy trình ══════════════════════ -->
+<section class="sec">
+  <div class="w">
+    <div class="hl rev-col">
+      <div class="hl-text rev">
+        <div class="tag">Quy trình làm việc</div>
+        <h2>Từ ý tưởng đến<br><span class="gt">công trình hoàn chỉnh</span></h2>
+        <p>Quy trình 5 bước minh bạch, chuyên nghiệp — khách hàng luôn nắm rõ tiến độ và chủ động trong từng quyết định.</p>
+        <ul>
+          <li>Khảo sát thực địa miễn phí, không ràng buộc</li>
+          <li>Báo giá chi tiết, minh bạch từng hạng mục</li>
+          <li>Cập nhật tiến độ thi công hàng tuần</li>
+          <li>Bàn giao hồ sơ pháp lý đầy đủ, đúng quy định</li>
+        </ul>
+        <a href="#contact" class="btn btn-o btn-lg">Bắt đầu dự án của bạn</a>
+      </div>
+      <div class="hl-visual rev d2" style="padding:0;">
+        <div class="proc-visual">
+          <div class="proc-row">
+            <div class="proc-row-num">01</div>
+            <div class="proc-row-text"><h4>Tiếp nhận &amp; Khảo sát</h4><p>Khảo sát thực địa, đánh giá hiện trạng</p></div>
+            <span class="proc-row-tag tag-done">Miễn phí</span>
+          </div>
+          <div class="proc-row">
+            <div class="proc-row-num">02</div>
+            <div class="proc-row-text"><h4>Thiết kế &amp; Dự toán</h4><p>Bản vẽ kỹ thuật, báo giá chi tiết</p></div>
+            <span class="proc-row-tag tag-act">3–5 ngày</span>
+          </div>
+          <div class="proc-row">
+            <div class="proc-row-num">03</div>
+            <div class="proc-row-text"><h4>Thi công &amp; Giám sát</h4><p>Triển khai theo thiết kế, báo cáo định kỳ</p></div>
+            <span class="proc-row-tag tag-act">Theo HĐ</span>
+          </div>
+          <div class="proc-row">
+            <div class="proc-row-num">04</div>
+            <div class="proc-row-text"><h4>Nghiệm thu &amp; Bàn giao</h4><p>Kiểm tra, thử nghiệm, hoàn thiện hồ sơ</p></div>
+            <span class="proc-row-tag tag-wait">Sau thi công</span>
+          </div>
+          <div class="proc-row">
+            <div class="proc-row-num">05</div>
+            <div class="proc-row-text"><h4>Bảo hành &amp; Hỗ trợ</h4><p>Bảo hành công trình + hỗ trợ 24/7</p></div>
+            <span class="proc-row-tag tag-done">Dài hạn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ QUOTE ══════════════════════ -->
+<section class="sec sec-alt quote-sec">
+  <div class="w">
+    <div class="quote-box rev">
+      <div class="quote-icon">❝</div>
+      <p class="quote-text">
+        "Sự hài lòng của cộng đồng<br>
+        là <span class="gt">hạnh phúc của doanh nghiệp</span>."
+      </p>
+      <p class="quote-author"><strong>Nguyễn Kim Thúy Quỳnh</strong> — Giám đốc điều hành, Lavipco · Thành lập 22/05/2014</p>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ CTA ══════════════════════ -->
+<section id="contact">
+  <div class="cta-glow"></div>
+  <div class="w">
+    <div class="cta-box rev">
+      <div class="tag" style="justify-content:center;margin-bottom:1.5rem;">Bắt đầu hợp tác</div>
+      <h2 class="cta-tagline">
+        Dự án của bạn<br>xứng đáng với<br>
+        <span class="gt">đội ngũ tốt nhất</span>
+      </h2>
+      <p class="cta-sub">Liên hệ ngay để được tư vấn miễn phí và nhận báo giá chi tiết trong vòng 24 giờ làm việc.</p>
+      <div class="cta-btns">
+        <a href="tel:0989725507" class="btn btn-p btn-lg">📞 &nbsp;0989 725 507</a>
+        <a href="tel:0932733427" class="btn btn-o btn-lg">📲 &nbsp;Hotline: 0932 733 427</a>
+      </div>
+      <div class="cta-info">
+        <div class="cta-it">
+          <div class="cta-ico">📍</div>
+          <div>63/23A, Liên Khu 16-18<br>P.Bình Trị Đông, Q.Bình Tân, TP.HCM</div>
+        </div>
+        <div class="cta-it">
+          <div class="cta-ico">✉️</div>
+          <div>lavipco.co@gmail.com<br>MST: 1101748509</div>
+        </div>
+        <div class="cta-it">
+          <div class="cta-ico">🕐</div>
+          <div>Thứ 2 – Thứ 7 · 7:00–17:30<br>Hotline kỹ thuật 24/7</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ FINAL CTA ══════════════════════ -->
+<div class="final-cta">
+  <div class="w">
+    <h2 class="rev">Chiếu sáng &amp; tín hiệu<br><span class="gt">tận tâm · chính trực.</span><br>Sẵn sàng phục vụ bạn.</h2>
+    <p class="rev d1">Tư vấn miễn phí · Báo giá trong 24h · Thi công toàn quốc</p>
+    <div class="btns rev d2">
+      <a href="#contact" class="btn btn-p btn-lg">Liên hệ ngay →</a>
+      <a href="tel:0989725507" class="btn btn-o btn-lg">📞 0989 725 507</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <div class="w">
+    <div class="ft-g">
+      <div class="ft-brand">
+        <img src="LOGO_LAVICO-removebg-preview.png" alt="Lavipco" />
+        <p>Công ty TNHH Kỹ Nghệ Lâm Việt Phát (Lavipco) — Chuyên chiếu sáng đô thị, tín hiệu giao thông, điện mặt trời và sản xuất thiết bị điện. Thành lập 2014 · TP.HCM.</p>
+      </div>
+      <div class="ft-col">
+        <h5>Dịch vụ</h5>
+        <ul>
+          <li><a href="#services">Thi công hệ thống điện</a></li>
+          <li><a href="#services">Chiếu sáng đô thị</a></li>
+          <li><a href="#services">Điện năng lượng mặt trời</a></li>
+          <li><a href="#services">Bảo trì &amp; Sửa chữa</a></li>
+          <li><a href="#services">Tư vấn thiết kế</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>Công ty</h5>
+        <ul>
+          <li><a href="#about">Giới thiệu</a></li>
+          <li><a href="#projects">Dự án</a></li>
+          <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>Liên hệ</h5>
+        <div>
+          <div class="ft-ci"><span>📍</span><span>63/23A, Liên Khu 16-18, P.Bình Trị Đông, Q.Bình Tân, TP.HCM</span></div>
+          <div class="ft-ci"><span>📞</span><span>0989 725 507 · Hotline: 0932 733 427</span></div>
+          <div class="ft-ci"><span>✉️</span><span>lavipco.co@gmail.com</span></div>
+          <div class="ft-ci"><span>🔏</span><span>MST: 1101748509</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© 2025 Công ty TNHH Kỹ Nghệ Lâm Việt Phát (Lavipco) · MST 1101748509 · Thành lập 22/05/2014</p>
+      <div class="socs">
+        <a href="#" class="soc">f</a>
+        <a href="#" class="soc">Z</a>
+        <a href="#" class="soc">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════ SCRIPTS ══════════════════════ -->
+<script>
+  /* enable animations only after JS loads */
+  document.body.classList.add('js-loaded');
+
+  /* nav stick */
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('sk', scrollY > 50), { passive: true });
+
+  /* drawer */
+  function toggleDrw() {
+    const d = document.getElementById('drw'), h = document.getElementById('ham');
+    const open = d.classList.toggle('o');
+    h.classList.toggle('o', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeDrw() {
+    document.getElementById('drw').classList.remove('o');
+    document.getElementById('ham').classList.remove('o');
+    document.body.style.overflow = '';
+  }
+
+  /* scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.rev:not(.on)').forEach(el => io.observe(el));
+
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return; e.preventDefault();
+      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>

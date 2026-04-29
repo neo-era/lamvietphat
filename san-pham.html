@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sản phẩm | Lavipco | Công ty TNHH Kỹ Nghệ Lâm Việt Phát</title>
+  <meta name="description" content="Sản phẩm chiếu sáng thông minh, đèn chiếu sáng đường phố, đèn tín hiệu giao thông của Lavipco — chất lượng cao, giá cạnh tranh." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:        #070707;
+  --s1:        #0d0d0d;
+  --s2:        #141414;
+  --s3:        #1c1c1c;
+  --ln:        #232323;
+  --ln2:       #2e2e2e;
+  --fg:        #f8f8f8;
+  --fg2:       #9a9a9a;
+  --fg3:       #4a4a4a;
+
+  /* brand */
+  --b0: #1d4ed8;
+  --b1: #3b82f6;
+  --b2: #60a5fa;
+  --c1: #06b6d4;
+  --c2: #67e8f9;
+  --glow: rgba(59,130,246,.15);
+
+  --max: 1160px;
+  --pad: clamp(1.25rem,4vw,2.5rem);
+  --sp:  clamp(6rem,12vw,10rem);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════ */
+.w { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+.gt {
+  background: linear-gradient(110deg, var(--b2) 0%, var(--c1) 55%, var(--c2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Divider */
+hr.div {
+  border: none; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--ln) 20%, var(--ln) 80%, transparent 100%);
+}
+
+/* Tag label */
+.tag {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--b1);
+}
+.tag::before, .tag::after { content:''; display:block; width:18px; height:1px; background:var(--b1); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .6rem 1.3rem; border-radius: 8px;
+  font-size: .875rem; font-weight: 600;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all .2s; white-space: nowrap; font-family: inherit;
+}
+.btn-p {
+  background: linear-gradient(135deg, var(--b0) 0%, var(--b1) 100%);
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(59,130,246,.3), 0 4px 20px rgba(59,130,246,.25);
+}
+.btn-p:hover { opacity:.9; transform:translateY(-1px); box-shadow: 0 0 0 1px rgba(59,130,246,.4), 0 6px 28px rgba(59,130,246,.4); }
+.btn-o { background:transparent; color:var(--fg); border:1px solid var(--ln2); }
+.btn-o:hover { background:var(--s2); border-color:#3a3a3a; }
+.btn-lg { padding:.75rem 1.75rem; font-size:.95rem; border-radius:10px; }
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(28px); }
+  to   { opacity:1; transform:none; }
+}
+body.js-loaded .rev {
+  opacity:0;
+  animation: fadeUp .65s cubic-bezier(.22,.68,0,1.1) forwards;
+  animation-play-state: paused;
+}
+body.js-loaded .rev.on { animation-play-state: running; }
+.d1{animation-delay:.08s} .d2{animation-delay:.16s} .d3{animation-delay:.24s}
+.d4{animation-delay:.32s} .d5{animation-delay:.40s} .d6{animation-delay:.48s}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+#nav {
+  position: fixed; inset: 0 0 auto; z-index: 900;
+  padding: .85rem 0;
+  border-bottom: 1px solid transparent;
+  transition: background .35s, border-color .35s, backdrop-filter .35s;
+}
+#nav.sk {
+  background: rgba(7,7,7,.85);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: var(--ln);
+}
+.nav-i { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; }
+.nav-logo { display:flex; align-items:center; gap:.55rem; text-decoration:none; }
+.nav-logo img { height:34px; width:auto; }
+
+.nav-ul { display:none; list-style:none; gap:2rem; }
+@media(min-width:768px){ .nav-ul{ display:flex; } }
+.nav-ul a { color:var(--fg2); text-decoration:none; font-size:.875rem; font-weight:500; transition:color .2s; }
+.nav-ul a:hover { color:var(--fg); }
+
+.nav-right { display:flex; align-items:center; gap:.75rem; }
+.nav-cta { display:none; }
+@media(min-width:768px){ #nav.sk .nav-cta{ display:inline-flex; } }
+
+/* hamburger */
+.ham { display:flex; flex-direction:column; gap:5px; cursor:pointer; padding:6px; }
+@media(min-width:768px){ .ham{ display:none; } }
+.ham s { display:block; width:22px; height:2px; background:var(--fg2); border-radius:2px; text-decoration:none; transition:all .3s; }
+.ham.o s:nth-child(1){ transform:rotate(45deg) translate(5px,5px); }
+.ham.o s:nth-child(2){ opacity:0; transform:scaleX(0); }
+.ham.o s:nth-child(3){ transform:rotate(-45deg) translate(5px,-5px); }
+
+/* drawer */
+#drw {
+  position:fixed; inset:0; z-index:899;
+  background:rgba(7,7,7,.97); backdrop-filter:blur(20px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem;
+  opacity:0; pointer-events:none; transition:opacity .3s;
+}
+#drw.o { opacity:1; pointer-events:all; }
+#drw a { color:var(--fg); text-decoration:none; font-size:1.6rem; font-weight:800; }
+#drw a:hover { color:var(--b2); }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero {
+  min-height: 60svh;
+  display: flex; align-items: center;
+  padding: 5.5rem 0 3rem;
+  position: relative; overflow: hidden;
+}
+
+.h-ga {
+  position:absolute; pointer-events:none; border-radius:50%;
+  background: radial-gradient(circle, rgba(59,130,246,.22) 0%, transparent 65%);
+  width:1100px; height:700px;
+  top:-20%; left:50%; transform:translateX(-50%);
+}
+.h-gb {
+  position:absolute; pointer-events:none; border-radius:50%;
+  background: radial-gradient(circle, rgba(6,182,212,.14) 0%, transparent 65%);
+  width:700px; height:600px;
+  top:20%; right:-15%;
+}
+.h-gc {
+  position:absolute; pointer-events:none; border-radius:50%;
+  background: radial-gradient(circle, rgba(29,78,216,.16) 0%, transparent 65%);
+  width:600px; height:500px;
+  bottom:-5%; left:-8%;
+}
+
+.h-dots {
+  position:absolute; inset:0; pointer-events:none;
+  background-image: radial-gradient(circle, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, black 20%, transparent 100%);
+}
+
+.h-body {
+  position:relative; z-index:1;
+  max-width:860px; margin:0 auto; text-align:center;
+}
+
+.h-h1 {
+  font-size: clamp(2.8rem,8vw,5.6rem);
+  font-weight:900; line-height:1.06; letter-spacing:-.035em;
+  margin-bottom:1.4rem;
+}
+
+.h-p {
+  font-size: clamp(.95rem,2vw,1.15rem);
+  color:var(--fg2); max-width:560px; margin:0 auto 2.5rem; line-height:1.8;
+}
+
+.h-btns { display:flex; gap:.85rem; justify-content:center; flex-wrap:wrap; margin-bottom:4rem; }
+
+/* ═══════════════════════════════════════════
+   SECTION SHARED
+═══════════════════════════════════════════ */
+.sec { padding: var(--sp) 0; }
+.sec-alt { background: var(--s1); }
+
+.c-head { text-align:center; margin-bottom:3.5rem; }
+.c-h2 {
+  font-size:clamp(2rem,4.5vw,3.5rem);
+  font-weight:900; letter-spacing:-.03em; line-height:1.12;
+  margin-bottom:.8rem;
+}
+.c-p { color:var(--fg2); max-width:500px; margin:0 auto; font-size:1rem; line-height:1.8; }
+
+/* ═══════════════════════════════════════════
+   PRODUCTS GRID
+═══════════════════════════════════════════ */
+.prod-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+@media(min-width: 640px) { .prod-grid { grid-template-columns: repeat(2, 1fr); } }
+@media(min-width: 1024px) { .prod-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.prod-card {
+  background: var(--s1);
+  border: 1px solid var(--ln);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: all .3s cubic-bezier(.22,.68,0,1.2);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.prod-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--b1), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 2;
+}
+
+.prod-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(59, 130, 246, .4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, .4);
+}
+
+.prod-card:hover::before {
+  opacity: 1;
+}
+
+.prod-img {
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(135deg, var(--s2) 0%, var(--s3) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.5rem;
+  border-bottom: 1px solid var(--ln);
+  position: relative;
+  overflow: hidden;
+}
+
+.prod-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, .1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.prod-body {
+  padding: 2rem 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.prod-cat {
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--c1);
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.prod-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: .75rem;
+}
+
+.prod-desc {
+  font-size: .875rem;
+  color: var(--fg2);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.prod-specs {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ln);
+}
+
+.prod-spec {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8rem;
+  color: var(--fg2);
+}
+
+.prod-spec::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background: rgba(59, 130, 246, .15);
+  border-radius: 50%;
+  border: 1px solid rgba(59, 130, 246, .25);
+  font-size: .55rem;
+  color: var(--b2);
+  font-weight: 700;
+}
+
+.prod-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--b2);
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: gap .2s;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.prod-btn:hover {
+  gap: .7rem;
+}
+
+/* ═══════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+  padding: 1.5rem;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background: var(--s1);
+  border: 1px solid var(--ln);
+  border-radius: 20px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp .4s cubic-bezier(.22,.68,0,1.2);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  position: relative;
+  height: 320px;
+  background: linear-gradient(135deg, var(--s2) 0%, var(--s3) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  border-bottom: 1px solid var(--ln);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, .6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all .2s;
+  color: var(--fg);
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: rgba(0, 0, 0, .8);
+  border-color: rgba(255, 255, 255, .2);
+}
+
+.modal-body {
+  padding: 2.5rem;
+}
+
+.modal-cat {
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--c1);
+  font-weight: 700;
+  margin-bottom: .75rem;
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.modal-desc {
+  font-size: .95rem;
+  color: var(--fg2);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.modal-specs {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--ln);
+}
+
+.modal-spec {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.modal-spec-label {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--fg3);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.modal-spec-value {
+  font-size: .95rem;
+  color: var(--fg2);
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.modal-spec-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.modal-spec-item::before {
+  content: '→';
+  color: var(--b2);
+  font-weight: 700;
+  margin-right: .25rem;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.modal-btns a {
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer { border-top:1px solid var(--ln); padding:4rem 0 2rem; background:var(--bg); }
+.ft-g {
+  display:grid; gap:2.5rem; grid-template-columns:1fr; margin-bottom:3rem;
+}
+@media(min-width:768px){ .ft-g{ grid-template-columns:1.8fr 1fr 1fr 1.5fr; gap:2rem; } }
+.ft-brand img { height:36px; width:auto; margin-bottom:.85rem; }
+.ft-brand p { font-size:.82rem; color:var(--fg3); line-height:1.75; max-width:250px; }
+.ft-col h5 { font-size:.68rem; text-transform:uppercase; letter-spacing:.12em; color:var(--fg3); font-weight:700; margin-bottom:1.1rem; }
+.ft-col ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+.ft-col a { color:var(--fg2); text-decoration:none; font-size:.865rem; transition:color .2s; }
+.ft-col a:hover { color:var(--fg); }
+.ft-ci { display:flex; gap:.5rem; font-size:.82rem; color:var(--fg3); line-height:1.55; margin-bottom:.55rem; }
+.ft-ci span:first-child { color:var(--b1); flex-shrink:0; }
+.ft-bot {
+  padding-top:2rem; border-top:1px solid var(--ln);
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+}
+.ft-bot p { font-size:.77rem; color:var(--fg3); }
+.socs { display:flex; gap:.5rem; }
+.soc {
+  width:32px; height:32px; border-radius:7px;
+  background:var(--s1); border:1px solid var(--ln);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--fg3); text-decoration:none; font-size:.8rem; font-weight:700;
+  transition:all .2s;
+}
+.soc:hover { border-color:var(--b1); color:var(--b2); }
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--ln2);border-radius:3px}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════ NAV ══════════════════════ -->
+<nav id="nav">
+  <div class="w">
+    <div class="nav-i">
+      <a href="index.html" class="nav-logo">
+        <img src="LOGO_LAVICO-removebg-preview.png" alt="Lavipco" />
+      </a>
+      <ul class="nav-ul">
+        <li><a href="index.html#hero">Trang chủ</a></li>
+        <li><a href="index.html#about">Giới thiệu</a></li>
+        <li><a href="index.html#services">Dịch vụ</a></li>
+        <li><a href="index.html#projects">Dự án</a></li>
+        <li><a href="san-pham.html">Sản phẩm</a></li>
+        <li><a href="index.html#contact">Liên hệ</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="index.html#contact" class="btn btn-p nav-cta">Liên hệ ngay</a>
+        <div class="ham" id="ham" onclick="toggleDrw()">
+          <s></s><s></s><s></s>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div id="drw">
+  <a href="index.html#about"    onclick="closeDrw()">Giới thiệu</a>
+  <a href="index.html#services" onclick="closeDrw()">Dịch vụ</a>
+  <a href="index.html#projects" onclick="closeDrw()">Dự án</a>
+  <a href="san-pham.html"        onclick="closeDrw()">Sản phẩm</a>
+  <a href="index.html#contact"  onclick="closeDrw()">Liên hệ</a>
+  <a href="index.html#contact" class="btn btn-p btn-lg" onclick="closeDrw()" style="margin-top:.5rem;">Liên hệ ngay</a>
+</div>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section id="hero">
+  <div class="h-ga"></div>
+  <div class="h-gb"></div>
+  <div class="h-gc"></div>
+  <div class="h-dots"></div>
+
+  <div class="w" style="width:100%;">
+    <div class="h-body">
+      <h1 class="h-h1 rev on d1">
+        Sản phẩm chiếu sáng<br>
+        <span class="gt">chất lượng, đáng tin cậy</span>
+      </h1>
+
+      <p class="h-p rev on d2">
+        Khám phá bộ sưu tập sản phẩm chiếu sáng thông minh, đèn chiếu sáng đường phố 
+        và đèn tín hiệu giao thông được thiết kế để mang lại hiệu quả, độ bền và tiết kiệm năng lượng tối đa.
+      </p>
+
+      <div class="h-btns rev on d3">
+        <a href="#products" class="btn btn-p btn-lg">
+          Xem sản phẩm
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="index.html#contact" class="btn btn-o btn-lg">Tư vấn miễn phí</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ PRODUCTS ══════════════════════ -->
+<section class="sec" id="products">
+  <div class="w">
+    <div class="c-head">
+      <div class="tag rev">Sản phẩm chính</div>
+      <h2 class="c-h2 rev d1">Giải pháp chiếu sáng<br><span class="gt">toàn diện</span></h2>
+      <p class="c-p rev d2">Bộ sưu tập sản phẩm chiếu sáng hiện đại được thiết kế cho các ứng dụng đô thị, giao thông và thông minh.</p>
+    </div>
+
+    <div class="prod-grid rev d3">
+
+      <!-- Product 1: Hệ thống chiếu sáng thông minh -->
+      <div class="prod-card" onclick="openModal(0)">
+        <div class="prod-img">💡</div>
+        <div class="prod-body">
+          <span class="prod-cat">Công nghệ</span>
+          <h3 class="prod-title">Hệ thống chiếu sáng thông minh</h3>
+          <p class="prod-desc">Giải pháp chiếu sáng điều khiển tập trung, tự động điều chỉnh công suất, giám sát từ xa qua ứng dụng.</p>
+          <div class="prod-specs">
+            <div class="prod-spec">Điều khiển tập trung</div>
+            <div class="prod-spec">Tiết kiệm 40% năng lượng</div>
+            <div class="prod-spec">Giám sát realtime</div>
+          </div>
+          <button class="prod-btn">
+            Xem chi tiết
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 2: Đèn chiếu sáng đường phố -->
+      <div class="prod-card" onclick="openModal(1)">
+        <div class="prod-img">🚗</div>
+        <div class="prod-body">
+          <span class="prod-cat">Đô thị</span>
+          <h3 class="prod-title">Đèn chiếu sáng đường phố</h3>
+          <p class="prod-desc">Đèn đường LED công suất cao, độ sáng 80-150 lux, tuổi thọ 50.000 giờ, tiêu chuẩn TCVN/QCVN.</p>
+          <div class="prod-specs">
+            <div class="prod-spec">LED hiệu suất cao</div>
+            <div class="prod-spec">CRI 80+ / Ra 80</div>
+            <div class="prod-spec">Tuổi thọ 50.000h</div>
+          </div>
+          <button class="prod-btn">
+            Xem chi tiết
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 3: Đèn tín hiệu giao thông (THGT) -->
+      <div class="prod-card" onclick="openModal(2)">
+        <div class="prod-img">🚦</div>
+        <div class="prod-body">
+          <span class="prod-cat">Giao thông</span>
+          <h3 class="prod-title">Đèn tín hiệu giao thông</h3>
+          <p class="prod-desc">Đèn THGT LED 200mm, 300mm, chuẩn IEC, độ sáng cao, chống nước IP67, tuổi thọ 100.000 giờ.</p>
+          <div class="prod-specs">
+            <div class="prod-spec">Chuẩn quốc tế IEC</div>
+            <div class="prod-spec">Chống nước IP67</div>
+            <div class="prod-spec">Tuổi thọ 100.000h</div>
+          </div>
+          <button class="prod-btn">
+            Xem chi tiết
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3.5L11.5 7 8 10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ══════════════════════ MODAL ══════════════════════ -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-body" id="modalBody">
+      <!-- Content injected by JavaScript -->
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <div class="w">
+    <div class="ft-g">
+      <div class="ft-brand">
+        <img src="LOGO_LAVICO-removebg-preview.png" alt="Lavipco" />
+        <p>Công ty TNHH Kỹ Nghệ Lâm Việt Phát (Lavipco) — Chuyên chiếu sáng đô thị, tín hiệu giao thông, điện mặt trời. Thành lập 2014 · TP.HCM.</p>
+      </div>
+      <div class="ft-col">
+        <h5>Sản phẩm</h5>
+        <ul>
+          <li><a href="san-pham.html">Chiếu sáng thông minh</a></li>
+          <li><a href="san-pham.html">Đèn đường phố</a></li>
+          <li><a href="san-pham.html">Đèn tín hiệu</a></li>
+          <li><a href="index.html#services">Dịch vụ tư vấn</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>Công ty</h5>
+        <ul>
+          <li><a href="index.html#about">Giới thiệu</a></li>
+          <li><a href="index.html#projects">Dự án</a></li>
+          <li><a href="index.html#contact">Liên hệ</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h5>Liên hệ</h5>
+        <div>
+          <div class="ft-ci"><span>📍</span><span>63/23A, Liên Khu 16-18, P.Bình Trị Đông, Q.Bình Tân, TP.HCM</span></div>
+          <div class="ft-ci"><span>📞</span><span>0989 725 507 · 0932 733 427</span></div>
+          <div class="ft-ci"><span>✉️</span><span>lavipco.co@gmail.com</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© 2025 Công ty TNHH Kỹ Nghệ Lâm Việt Phát (Lavipco) · MST 1101748509</p>
+      <div class="socs">
+        <a href="#" class="soc">f</a>
+        <a href="#" class="soc">Z</a>
+        <a href="#" class="soc">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════ SCRIPTS ══════════════════════ -->
+<script>
+  /* Product data */
+  const products = [
+    {
+      id: 0,
+      emoji: '💡',
+      category: 'Công nghệ',
+      title: 'Hệ thống chiếu sáng thông minh',
+      shortDesc: 'Giải pháp chiếu sáng điều khiển tập trung, tự động điều chỉnh công suất, giám sát từ xa qua ứng dụng.',
+      longDesc: 'Hệ thống chiếu sáng thông minh Lavipco giúp quản lý và điều khiển toàn bộ đèn đường từ một nơi. Tự động điều chỉnh công suất dựa vào lưu lượng giao thông, ánh sáng tự nhiên, và giờ giấc — tiết kiệm 30-40% chi phí điện năng. Giám sát realtime, báo cáo chi tiết, phát hiện sự cố tự động.',
+      features: [
+        'Điều khiển tập trung từ trung tâm quản lý',
+        'Tự động điều chỉnh công suất (DIMMING)',
+        'Giám sát từ xa qua web/mobile app',
+        'Phát hiện sự cố và cảnh báo tự động',
+        'Tiết kiệm 30-40% chi phí điện năng',
+        'Tích hợp cảm biến ánh sáng, chuyển động'
+      ],
+      specs: {
+        'Công suất': ['15W – 250W (tùy mô-đun)', 'Tối ưu hóa theo nhu cầu'],
+        'Giao thức': ['WiFi / 4G / LoRaWAN', 'Tuỳ chọn kết nối'],
+        'Bảo hành': ['3 năm thiết bị, 1 năm phần mềm', 'Hỗ trợ 24/7'],
+        'Ứng dụng': ['Chiếu sáng đô thị', 'Khu công nghiệp, KTXH', 'Công viên, quảng trường']
+      }
+    },
+    {
+      id: 1,
+      emoji: '🚗',
+      category: 'Đô thị',
+      title: 'Đèn chiếu sáng đường phố',
+      shortDesc: 'Đèn đường LED công suất cao, độ sáng 80-150 lux, tuổi thọ 50.000 giờ, tiêu chuẩn TCVN/QCVN.',
+      longDesc: 'Đèn chiếu sáng đường phố LED của Lavipco được thiết kế theo tiêu chuẩn TCVN 5649:2008 và QCVN 21:2014/BXD, đảm bảo độ sáng, độ đồng đều và an toàn giao thông tối đa. Công suất từ 30W đến 150W, tuổi thọ 50.000 giờ, hỗ trợ IoT.',
+      features: [
+        'LED Philips/Osram/Ledvance chính hãng',
+        'Độ sáng: 80-150 lux (theo QCVN)',
+        'CRI 80+, Ra 80 (ánh sáng tự nhiên)',
+        'Tuổi thọ: 50.000 giờ',
+        'Hỗ trợ điều khiển thông minh (DIMMING)',
+        'Chống nước IP65, chống bụi IK07'
+      ],
+      specs: {
+        'Công suất': ['30W, 50W, 75W, 100W, 150W', 'Tuỳ chọn theo yêu cầu'],
+        'Kích cỡ': ['Tiêu chuẩn 400x400mm', 'Hỗ trợ custom'],
+        'Tuổi thọ': ['50.000 giờ / 10 năm', 'Bảo hành 3 năm'],
+        'Tiêu chuẩn': ['TCVN 5649:2008', 'QCVN 21:2014/BXD', 'IEC 60598-1']
+      }
+    },
+    {
+      id: 2,
+      emoji: '🚦',
+      category: 'Giao thông',
+      title: 'Đèn tín hiệu giao thông',
+      shortDesc: 'Đèn THGT LED 200mm, 300mm, chuẩn IEC, độ sáng cao, chống nước IP67, tuổi thọ 100.000 giờ.',
+      longDesc: 'Đèn tín hiệu giao thông (THGT) LED của Lavipco tuân thủ tiêu chuẩn quốc tế IEC 60594 và TCVN 4701. Độ sáng cao, chống nước IP67, tuổi thọ 100.000 giờ, tiết kiệm 70% năng lượng so với đèn chân không truyền thống. Kích cỡ 200mm hoặc 300mm, hỗ trợ custom màu sắc.',
+      features: [
+        'Chuẩn quốc tế IEC 60594',
+        'Kích cỡ: 200mm hoặc 300mm',
+        'LED RGB tuổi thọ 100.000 giờ',
+        'Chống nước IP67, chống quang',
+        'Tiết kiệm 70% năng lượng',
+        'Hỗ trợ smart control & countdown'
+      ],
+      specs: {
+        'Kích cỡ': ['200mm (3 mặt)', '300mm (3 mặt)', 'Tuỳ chọn 4 mặt'],
+        'Tuổi thọ': ['100.000 giờ / 15 năm', 'Bảo hành 5 năm'],
+        'Chống': ['IP67 (nước mặn)', 'IK07 (va đập)', 'Quang cách ly'],
+        'Tiêu chuẩn': ['IEC 60594:2011', 'TCVN 4701:2013', 'Chuẩn ToC quốc tế']
+      }
+    }
+  ];
+
+  /* enable animations only after JS loads */
+  document.body.classList.add('js-loaded');
+
+  /* nav stick */
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('sk', scrollY > 50), { passive: true });
+
+  /* drawer */
+  function toggleDrw() {
+    const d = document.getElementById('drw'), h = document.getElementById('ham');
+    const open = d.classList.toggle('o');
+    h.classList.toggle('o', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  function closeDrw() {
+    document.getElementById('drw').classList.remove('o');
+    document.getElementById('ham').classList.remove('o');
+    document.body.style.overflow = '';
+  }
+
+  /* scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.rev:not(.on)').forEach(el => io.observe(el));
+
+  /* smooth scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return; e.preventDefault();
+      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* Modal */
+  function openModal(index) {
+    const product = products[index];
+    const specsHtml = Object.entries(product.specs)
+      .map(([key, values]) => `
+        <div class="modal-spec">
+          <div class="modal-spec-label">${key}</div>
+          <div class="modal-spec-value">
+            ${values.map(v => `<div class="modal-spec-item">${v}</div>`).join('')}
+          </div>
+        </div>
+      `).join('');
+
+    const modal = document.getElementById('modal');
+    modal.querySelector('#modalBody').innerHTML = `
+      <div class="modal-header">${product.emoji}</div>
+      <div class="modal-cat">${product.category}</div>
+      <h2 class="modal-title">${product.title}</h2>
+      <p class="modal-desc">${product.longDesc}</p>
+
+      <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--ln);">
+        <h3 style="font-size: .9rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--fg2);">TÍNH NĂNG CHÍNH</h3>
+        <div style="display: grid; gap: .75rem;">
+          ${product.features.map(f => `
+            <div style="display: flex; align-items: flex-start; gap: .5rem; font-size: .875rem; color: var(--fg2);">
+              <span style="color: var(--b2); margin-right: .25rem;">✓</span>
+              ${f}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: .9rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--fg2);">THÔNG SỐ KỸ THUẬT</h3>
+        <div class="modal-specs">${specsHtml}</div>
+      </div>
+
+      <div class="modal-btns">
+        <a href="index.html#contact" class="btn btn-p btn-lg">Liên hệ tư vấn →</a>
+        <a href="tel:0989725507" class="btn btn-o btn-lg">📞 0989 725 507</a>
+      </div>
+    `;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(event) {
+    if (event && event.target !== document.getElementById('modal')) return;
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  /* Keyboard ESC to close */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>
