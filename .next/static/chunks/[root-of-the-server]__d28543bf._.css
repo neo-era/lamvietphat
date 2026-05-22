@@ -275,4 +275,139 @@
   }
 }
 
+.breadcrumb-link {
+  color: #4a4a4a;
+  transition: color .2s;
+}
+
+.breadcrumb-link:hover {
+  color: #9a9a9a;
+}
+
+.btn-outline {
+  color: #f8f8f8;
+  background: none;
+  border: 1px solid #2e2e2e;
+  transition: background .2s, border-color .2s;
+}
+
+.btn-outline:hover {
+  background: #141414;
+  border-color: #3a3a3a;
+}
+
+.call-btn {
+  background: none;
+  transition: background .2s;
+}
+
+.call-btn:hover {
+  background: #141414;
+}
+
+.card-hover {
+  transition: background .25s, border-color .25s;
+}
+
+.card-hover:hover {
+  background: #141414 !important;
+  border-color: rgba(59, 130, 246, .3) !important;
+}
+
+.card-hover-dark {
+  transition: background .25s, border-color .25s;
+}
+
+.card-hover-dark:hover {
+  background: #1a1a1a !important;
+  border-color: rgba(59, 130, 246, .3) !important;
+}
+
+.prod-card-hover {
+  transition: border-color .25s, transform .25s;
+}
+
+.prod-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(59, 130, 246, .4) !important;
+}
+
+.proj-card-hover {
+  transition: transform .3s, box-shadow .3s;
+}
+
+.proj-card-hover:hover {
+  transform: scale(1.018);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .6);
+}
+
+.related-card {
+  transition: border-color .25s, transform .25s;
+}
+
+.related-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, .4) !important;
+}
+
+.related-proj-card {
+  transition: transform .3s, box-shadow .3s;
+}
+
+.related-proj-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .5);
+}
+
+.hero-btn-up {
+  transition: transform .2s;
+}
+
+.hero-btn-up:hover {
+  transform: translateY(-1px);
+}
+
+.why-card {
+  transition: background .25s;
+}
+
+.why-card:hover {
+  background: #141414 !important;
+}
+
+.table-row-hover {
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.table-row-hover:hover {
+  background: #141414 !important;
+}
+
+.service-card-hover {
+  transition: background .25s, border-color .25s;
+}
+
+.service-card-hover:hover {
+  background: #141414 !important;
+  border-color: rgba(59, 130, 246, .3) !important;
+}
+
+.step-hover {
+  transition: background .2s;
+}
+
+.step-hover:hover {
+  background: #1a1a1a !important;
+}
+
+.admin-link-hover {
+  color: #4a4a4a;
+  transition: color .2s;
+}
+
+.admin-link-hover:hover {
+  color: #9a9a9a;
+}
+
 /*# sourceMappingURL=%5Broot-of-the-server%5D__d28543bf._.css.map*/
