@@ -8,9 +8,11 @@ import { usePathname } from "next/navigation"
 const navLinks = [
   { href: "/", label: "Trang chủ" },
   { href: "/ve-chung-toi", label: "Giới thiệu" },
-  { href: "/linh-vuc", label: "Lĩnh vực" },
-  { href: "/san-pham", label: "Sản phẩm" },
+  { href: "/linh-vuc", label: "Dịch vụ" },
   { href: "/du-an", label: "Dự án" },
+  { href: "/san-pham", label: "Sản phẩm" },
+  { href: "/chung-chi", label: "Chứng chỉ" },
+  { href: "/tin-tuc", label: "Tin tức" },
   { href: "/lien-he", label: "Liên hệ" },
 ]
 
@@ -80,14 +82,12 @@ export function Header() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            {scrolled && (
-              <Link
-                href="/lien-he"
-                className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 gradient-blue glow-blue hover:opacity-90"
-              >
-                Liên hệ ngay
-              </Link>
-            )}
+            <Link
+              href="/lien-he"
+              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 gradient-blue glow-blue hover:opacity-90"
+            >
+              Liên hệ ngay
+            </Link>
 
             {/* Hamburger */}
             <button
