@@ -28,19 +28,42 @@ export function Header() {
 
   return (
     <>
+      <style>{`
+        .lvp-nav-hide-scrollbar::-webkit-scrollbar { display: none; }
+        .lvp-cta-short { display: none; }
+        @media (max-width: 480px) {
+          .lvp-cta-full { display: none !important; }
+          .lvp-cta-short { display: inline !important; }
+        }
+      `}</style>
+
       <nav
-        className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
         style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
           padding: "0.65rem 0",
           borderBottom: scrolled ? "1px solid #232323" : "1px solid transparent",
-          background: scrolled ? "rgba(7,7,7,0.88)" : "rgba(7,7,7,0.45)",
+          background: scrolled ? "rgba(7,7,7,0.92)" : "rgba(7,7,7,0.55)",
           backdropFilter: "blur(18px)",
           WebkitBackdropFilter: "blur(18px)",
+          transition: "background 0.3s, border-color 0.3s",
         }}
       >
-        <div className="container-pad flex items-center gap-3 sm:gap-5">
+        <div
+          className="container-pad"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            flexWrap: "nowrap",
+            gap: "1rem",
+          }}
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center shrink-0">
+          <Link href="/" style={{ display: "inline-flex", alignItems: "center", flexShrink: 0 }}>
             <Image
               src="/logo.png"
               alt="Lavipco"
@@ -51,21 +74,36 @@ export function Header() {
             />
           </Link>
 
-          {/* Nav — always horizontal at top, scroll on mobile if overflow */}
+          {/* Nav — horizontal, scrolls if overflow */}
           <ul
-            className="flex items-center gap-x-4 sm:gap-x-5 lg:gap-x-7 list-none flex-1 min-w-0 overflow-x-auto no-scrollbar"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            className="lvp-nav-hide-scrollbar"
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              flexWrap: "nowrap",
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              gap: "1.25rem",
+              flex: "1 1 auto",
+              minWidth: 0,
+              overflowX: "auto",
+              overflowY: "hidden",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
           >
-            <style>{`
-              .no-scrollbar::-webkit-scrollbar { display: none; }
-            `}</style>
             {navLinks.map((link) => (
-              <li key={link.href} className="shrink-0">
+              <li key={link.href} style={{ flexShrink: 0 }}>
                 <Link
                   href={link.href}
-                  className="text-sm font-medium transition-colors duration-200 whitespace-nowrap"
                   style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
                     color: pathname === link.href ? "#f8f8f8" : "#9a9a9a",
+                    whiteSpace: "nowrap",
+                    transition: "color 0.2s",
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#f8f8f8")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = pathname === link.href ? "#f8f8f8" : "#9a9a9a")}
@@ -76,23 +114,38 @@ export function Header() {
             ))}
           </ul>
 
-          {/* CTA — always visible, shrinks label on mobile */}
+          {/* CTA — only one label visible per screen size */}
           <Link
             href="/lien-he"
-            className="shrink-0 inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-white transition-all duration-200 gradient-blue glow-blue hover:opacity-90 whitespace-nowrap"
+            className="gradient-blue glow-blue"
+            style={{
+              flexShrink: 0,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.4rem",
+              padding: "0.5rem 1rem",
+              borderRadius: "0.5rem",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              color: "#fff",
+              whiteSpace: "nowrap",
+              transition: "opacity 0.2s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
           >
-            <span className="hidden sm:inline">Liên hệ ngay</span>
-            <span className="sm:hidden">Liên hệ</span>
+            <span className="lvp-cta-full">Liên hệ ngay</span>
+            <span className="lvp-cta-short">Liên hệ</span>
           </Link>
         </div>
       </nav>
 
       {/* Floating contact buttons */}
-      <div className="fixed right-4 bottom-6 z-40 flex flex-col gap-2 items-center">
+      <div style={{ position: "fixed", right: "1rem", bottom: "1.5rem", zIndex: 40, display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center" }}>
         <a
           href="tel:0989725507"
-          className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-base shadow-xl float-call-anim"
-          style={{ background: "linear-gradient(135deg,#1d4ed8,#3b82f6)", boxShadow: "0 4px 24px rgba(0,0,0,0.55)" }}
+          className="float-call-anim"
+          style={{ width: "3rem", height: "3rem", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "1rem", fontWeight: 700, background: "linear-gradient(135deg,#1d4ed8,#3b82f6)", boxShadow: "0 4px 24px rgba(0,0,0,0.55)" }}
           title="Gọi ngay: 0989 725 507"
         >
           📞
@@ -101,8 +154,9 @@ export function Header() {
           href="https://zalo.me/0989725507"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-xl transition-transform hover:scale-110"
-          style={{ background: "#0068ff", boxShadow: "0 4px 24px rgba(0,0,0,0.55)" }}
+          style={{ width: "3rem", height: "3rem", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "0.75rem", fontWeight: 700, background: "#0068ff", boxShadow: "0 4px 24px rgba(0,0,0,0.55)", transition: "transform 0.2s" }}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           title="Zalo"
         >
           Zalo
