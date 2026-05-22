@@ -198,3 +198,15 @@
 
 .admin-link-hover { color: #4a4a4a; transition: color 0.2s; }
 .admin-link-hover:hover { color: #9a9a9a; }
+
+.partner-chip { color: #4a4a4a; background: #0d0d0d; border: 1px solid #232323; transition: all 0.2s; }
+.partner-chip:hover { color: #9a9a9a; border-color: #2e2e2e; background: #141414; }
+
+.admin-stat-card { transition: border-color 0.2s; }
+.admin-stat-card:hover { border-color: rgba(59,130,246,.4) !important; }
+
+.footer-link { color: #9a9a9a; transition: color 0.2s; }
+.footer-link:hover { color: #f8f8f8; }
+
+.social-btn { background: #0d0d0d; border: 1px solid #232323; color: #4a4a4a; transition: border-color 0.2s, color 0.2s; }
+.social-btn:hover { border-color: #3b82f6; color: #60a5fa; }

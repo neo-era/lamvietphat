@@ -84,7 +84,7 @@ export default function LinhVucPage() {
               <div className="grid gap-4 srv-g2" style={{ gridTemplateColumns: "1fr" }}>
                 {thiCong.map((s, i) => (
                   <ScrollRevealItem key={s.id}>
-                    <div className="rounded-2xl p-7 h-full group relative overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323", transition: "background 0.25s, border-color 0.25s" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#141414"; e.currentTarget.style.borderColor = "rgba(59,130,246,.3)" }} onMouseLeave={(e) => { e.currentTarget.style.background = "#0d0d0d"; e.currentTarget.style.borderColor = "#232323" }}>
+                    <div className="service-card-hover rounded-2xl p-7 h-full group relative overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323" }}>
                       <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
                       <div className="text-3xl mb-5">{categoryIcons["thi-cong"][i] ?? "⚡"}</div>
                       <h3 className="font-bold mb-3" style={{ fontSize: "1rem" }}>{s.title}</h3>
@@ -119,7 +119,7 @@ export default function LinhVucPage() {
               <div className="grid gap-4 srv-g2" style={{ gridTemplateColumns: "1fr" }}>
                 {tuVan.map((s, i) => (
                   <ScrollRevealItem key={s.id}>
-                    <div className="rounded-2xl p-7 h-full group relative overflow-hidden" style={{ background: "#141414", border: "1px solid #232323", transition: "background 0.25s, border-color 0.25s" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#1a1a1a"; e.currentTarget.style.borderColor = "rgba(59,130,246,.3)" }} onMouseLeave={(e) => { e.currentTarget.style.background = "#141414"; e.currentTarget.style.borderColor = "#232323" }}>
+                    <div className="card-hover-dark rounded-2xl p-7 h-full group relative overflow-hidden" style={{ background: "#141414", border: "1px solid #232323" }}>
                       <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
                       <div className="text-3xl mb-5">{categoryIcons["tu-van"][i] ?? "📋"}</div>
                       <h3 className="font-bold mb-3" style={{ fontSize: "1rem" }}>{s.title}</h3>
@@ -154,7 +154,7 @@ export default function LinhVucPage() {
               <div className="grid gap-4 srv-g2" style={{ gridTemplateColumns: "1fr" }}>
                 {sanXuat.map((s, i) => (
                   <ScrollRevealItem key={s.id}>
-                    <div className="rounded-2xl p-7 h-full group relative overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323", transition: "background 0.25s, border-color 0.25s" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#141414"; e.currentTarget.style.borderColor = "rgba(59,130,246,.3)" }} onMouseLeave={(e) => { e.currentTarget.style.background = "#0d0d0d"; e.currentTarget.style.borderColor = "#232323" }}>
+                    <div className="service-card-hover rounded-2xl p-7 h-full group relative overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323" }}>
                       <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
                       <div className="text-3xl mb-5">{categoryIcons["san-xuat"][i] ?? "🔧"}</div>
                       <h3 className="font-bold mb-3" style={{ fontSize: "1rem" }}>{s.title}</h3>
@@ -184,7 +184,7 @@ export default function LinhVucPage() {
           <div className="max-w-2xl mx-auto rounded-2xl overflow-hidden" style={{ background: "#141414", border: "1px solid #232323" }}>
             {steps.map((step, i) => (
               <ScrollReveal key={step.num} delay={i * 0.07}>
-                <div className="flex items-center gap-4 px-6 py-4 transition-colors" style={{ borderBottom: i < steps.length - 1 ? "1px solid #232323" : "none" }} onMouseEnter={(e) => (e.currentTarget.style.background = "#1a1a1a")} onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}>
+                <div className="step-hover flex items-center gap-4 px-6 py-4" style={{ borderBottom: i < steps.length - 1 ? "1px solid #232323" : "none" }}>
                   <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-xs shrink-0" style={{ background: "linear-gradient(135deg,#1d4ed8,#06b6d4)" }}>{step.num}</div>
                   <div className="flex-1">
                     <h4 className="font-bold mb-0.5" style={{ fontSize: "0.875rem" }}>{step.title}</h4>
@@ -245,7 +245,7 @@ export default function LinhVucPage() {
               <Link href="/lien-he" className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all">
                 Liên hệ tư vấn →
               </Link>
-              <Link href="/san-pham" className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold transition-all" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e" }} onMouseEnter={(e) => (e.currentTarget.style.background = "#141414")} onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}>
+              <Link href="/san-pham" className="btn-outline inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold">
                 Xem sản phẩm
               </Link>
             </div>

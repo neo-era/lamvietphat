@@ -49,7 +49,7 @@ export default async function AdminProductsPage() {
             </thead>
             <tbody>
               {products.map((p, i) => (
-                <tr key={p.id} style={{ borderBottom: i < products.length - 1 ? "1px solid #141414" : "none" }} onMouseEnter={(e) => ((e.currentTarget as HTMLTableRowElement).style.background = "#141414")} onMouseLeave={(e) => ((e.currentTarget as HTMLTableRowElement).style.background = "transparent")}>
+                <tr key={p.id} className="table-row-hover" style={{ borderBottom: i < products.length - 1 ? "1px solid #141414" : "none" }}>
                   <td className="px-4 py-3">
                     <p className="font-semibold" style={{ fontSize: "0.875rem" }}>{p.name}</p>
                     <p className="truncate" style={{ fontSize: "0.72rem", color: "#4a4a4a", maxWidth: "280px" }}>{p.shortDesc}</p>

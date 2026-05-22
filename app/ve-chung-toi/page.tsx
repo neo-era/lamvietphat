@@ -299,7 +299,7 @@ export default function AboutPage() {
               <div className="grid gap-4 cert-grid" style={{ gridTemplateColumns: "1fr" }}>
                 {legalBadges.map((b) => (
                   <ScrollRevealItem key={b.title}>
-                    <div className="rounded-2xl p-6 text-center relative overflow-hidden group" style={{ background: "#141414", border: "1px solid #232323", transition: "border-color 0.25s, background 0.25s" }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(59,130,246,.4)"; e.currentTarget.style.background = "#1a1a1a" }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#232323"; e.currentTarget.style.background = "#141414" }}>
+                    <div className="card-hover-dark rounded-2xl p-6 text-center relative overflow-hidden group" style={{ background: "#141414", border: "1px solid #232323" }}>
                       <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
                       <div className="text-3xl mb-4">{b.icon}</div>
                       <h3 className="font-bold mb-2" style={{ fontSize: "0.875rem" }}>{b.title}</h3>
@@ -318,7 +318,7 @@ export default function AboutPage() {
             </p>
             <div className="flex gap-3 flex-wrap justify-center">
               {partners.map((p) => (
-                <div key={p.name} className="flex items-center gap-2 px-4 py-2.5 rounded-lg" style={{ fontSize: "0.8rem", fontWeight: 600, color: "#4a4a4a", background: "#0d0d0d", border: "1px solid #232323", transition: "all 0.2s" }} onMouseEnter={(e) => { e.currentTarget.style.color = "#9a9a9a"; e.currentTarget.style.borderColor = "#2e2e2e"; e.currentTarget.style.background = "#141414" }} onMouseLeave={(e) => { e.currentTarget.style.color = "#4a4a4a"; e.currentTarget.style.borderColor = "#232323"; e.currentTarget.style.background = "#0d0d0d" }}>
+                <div key={p.name} className="partner-chip flex items-center gap-2 px-4 py-2.5 rounded-lg" style={{ fontSize: "0.8rem", fontWeight: 600 }}>
                   <span>{p.icon}</span> {p.name}
                 </div>
               ))}
@@ -348,7 +348,7 @@ export default function AboutPage() {
                 <span className="text-right" style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#4a4a4a" }}>SL</span>
               </div>
               {equipment.map((eq, i) => (
-                <div key={eq.name} className="grid px-6 py-3.5 transition-colors" style={{ gridTemplateColumns: "1fr auto auto", borderBottom: i < equipment.length - 1 ? "1px solid #1c1c1c" : "none", gap: "1rem" }} onMouseEnter={(e) => (e.currentTarget.style.background = "#141414")} onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}>
+                <div key={eq.name} className="table-row-hover grid px-6 py-3.5" style={{ gridTemplateColumns: "1fr auto auto", borderBottom: i < equipment.length - 1 ? "1px solid #1c1c1c" : "none", gap: "1rem" }}>
                   <span style={{ fontSize: "0.85rem" }}>{eq.name}</span>
                   <span style={{ fontSize: "0.8rem", color: "#9a9a9a" }}>{eq.origin}</span>
                   <span className="text-right" style={{ fontSize: "0.8rem", color: "#60a5fa", fontWeight: 600 }}>{eq.qty}</span>
@@ -373,7 +373,7 @@ export default function AboutPage() {
               <Link href="/lien-he" className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all">
                 Liên hệ ngay →
               </Link>
-              <Link href="/du-an" className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold transition-all" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e" }} onMouseEnter={(e) => (e.currentTarget.style.background = "#141414")} onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}>
+              <Link href="/du-an" className="btn-outline inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold">
                 Xem dự án đã thực hiện
               </Link>
             </div>

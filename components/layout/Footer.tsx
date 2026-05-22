@@ -40,12 +40,7 @@ export function Footer() {
               <ul className="flex flex-col gap-2.5 list-none">
                 {["Thi công đèn đường", "Tín hiệu giao thông", "Chiếu sáng cảnh quan", "Sản xuất trụ đèn", "Tư vấn thiết kế"].map((item) => (
                   <li key={item}>
-                    <Link
-                      href="/linh-vuc"
-                      style={{ color: "#9a9a9a", fontSize: "0.865rem", transition: "color 0.2s" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#f8f8f8")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "#9a9a9a")}
-                    >
+                    <Link href="/linh-vuc" className="footer-link" style={{ fontSize: "0.865rem" }}>
                       {item}
                     </Link>
                   </li>
@@ -66,12 +61,7 @@ export function Footer() {
                   { href: "/lien-he", label: "Liên hệ" },
                 ].map((item) => (
                   <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      style={{ color: "#9a9a9a", fontSize: "0.865rem", transition: "color 0.2s" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#f8f8f8")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "#9a9a9a")}
-                    >
+                    <Link href={item.href} className="footer-link" style={{ fontSize: "0.865rem" }}>
                       {item.label}
                     </Link>
                   </li>
@@ -120,20 +110,7 @@ export function Footer() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all duration-200"
-                style={{
-                  background: "#0d0d0d",
-                  border: "1px solid #232323",
-                  color: "#4a4a4a",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#3b82f6"
-                  e.currentTarget.style.color = "#60a5fa"
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#232323"
-                  e.currentTarget.style.color = "#4a4a4a"
-                }}
+                className="social-btn w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold"
               >
                 {label}
               </a>

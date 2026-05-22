@@ -33,14 +33,6 @@ const projectGradients = [
 
 const projectEmoji = ["💡", "🏖️", "☀️", "🎡", "🏙️"]
 
-const bento = [
-  { colSpan: "span 7", minH: "320px" },
-  { colSpan: "span 5", minH: "320px" },
-  { colSpan: "span 4", minH: "260px" },
-  { colSpan: "span 4", minH: "260px" },
-  { colSpan: "span 4", minH: "260px" },
-]
-
 const whyItems = [
   { num: "01", title: "Kinh nghiệm thực chiến", desc: "Hơn 11 năm thi công công trình điện quy mô lớn tại TP.HCM và toàn quốc — đội ngũ đã qua thực tế." },
   { num: "02", title: "Tiêu chuẩn kỹ thuật cao", desc: "Mọi công trình tuân thủ nghiêm ngặt QCVN, TCVN và tiêu chuẩn IEC quốc tế — an toàn tuyệt đối." },
@@ -52,19 +44,13 @@ export default function HomePage() {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section
-        id="hero"
-        className="relative overflow-hidden flex items-center"
-        style={{ minHeight: "100svh", paddingTop: "5.5rem", paddingBottom: "3rem" }}
-      >
-        {/* Glows */}
+      <section id="hero" className="relative overflow-hidden flex items-center" style={{ minHeight: "100svh", paddingTop: "5.5rem", paddingBottom: "3rem" }}>
         <div className="absolute pointer-events-none rounded-full" style={{ background: "radial-gradient(circle,rgba(59,130,246,.22) 0%,transparent 65%)", width: "1100px", height: "700px", top: "-20%", left: "50%", transform: "translateX(-50%)" }} />
         <div className="absolute pointer-events-none rounded-full" style={{ background: "radial-gradient(circle,rgba(6,182,212,.14) 0%,transparent 65%)", width: "700px", height: "600px", top: "20%", right: "-15%" }} />
         <div className="dot-grid absolute inset-0 pointer-events-none" />
 
         <div className="container-pad w-full relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            {/* Pill */}
             <ScrollReveal>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full" style={{ background: "rgba(59,130,246,.08)", border: "1px solid rgba(59,130,246,.22)", fontSize: "0.75rem", fontWeight: 600, color: "#60a5fa" }}>
                 <span className="w-1.5 h-1.5 rounded-full pulse-dot" style={{ background: "#06b6d4" }} />
@@ -73,10 +59,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal delay={0.05}>
-              <h1
-                className="font-black"
-                style={{ fontSize: "clamp(2.8rem,8vw,5.6rem)", lineHeight: 1.06, letterSpacing: "-0.035em", marginBottom: "1.4rem" }}
-              >
+              <h1 className="font-black" style={{ fontSize: "clamp(2.8rem,8vw,5.6rem)", lineHeight: 1.06, letterSpacing: "-0.035em", marginBottom: "1.4rem" }}>
                 Lavipco —{" "}
                 <span className="gradient-text">Chiếu sáng đô thị</span>
                 <br />tận tâm &amp; chuyên nghiệp
@@ -91,11 +74,11 @@ export default function HomePage() {
 
             <ScrollReveal delay={0.15}>
               <div className="flex gap-3.5 justify-center flex-wrap mb-16">
-                <Link href="/san-pham" className="inline-flex items-center gap-1.5 px-7 py-3 rounded-xl text-base font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all duration-200" style={{ transform: "none" }} onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-1px)")} onMouseLeave={(e) => (e.currentTarget.style.transform = "none")}>
+                <Link href="/san-pham" className="hero-btn-up inline-flex items-center gap-1.5 px-7 py-3 rounded-xl text-base font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all duration-200">
                   Xem sản phẩm
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3.5L11.5 7 8 10.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </Link>
-                <Link href="/lien-he" className="inline-flex items-center gap-1.5 px-7 py-3 rounded-xl text-base font-semibold transition-all duration-200" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#141414"; e.currentTarget.style.borderColor = "#3a3a3a" }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "#2e2e2e" }}>
+                <Link href="/lien-he" className="btn-outline inline-flex items-center gap-1.5 px-7 py-3 rounded-xl text-base font-semibold">
                   Tư vấn miễn phí
                 </Link>
               </div>
@@ -107,17 +90,11 @@ export default function HomePage() {
                 <div className="absolute top-0 left-[15%] right-[15%] h-px" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
                 <div className="grid stats-grid" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
                   {stats.map((s, i) => (
-                    <div
-                      key={i}
-                      className="py-7 px-5 text-center"
-                      style={{ borderRight: i % 2 === 0 ? "1px solid #232323" : "none", borderBottom: i < 2 ? "1px solid #232323" : "none" }}
-                    >
+                    <div key={i} className="py-7 px-5 text-center" style={{ borderRight: i % 2 === 0 ? "1px solid #232323" : "none", borderBottom: i < 2 ? "1px solid #232323" : "none" }}>
                       <div className="font-black leading-none" style={{ fontSize: "clamp(1.6rem,3.5vw,2.4rem)", background: "linear-gradient(135deg,#60a5fa,#67e8f9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                         {s.value}
                       </div>
-                      <span className="block mt-1.5" style={{ fontSize: "0.68rem", color: "#4a4a4a", textTransform: "uppercase", letterSpacing: "0.09em" }}>
-                        {s.label}
-                      </span>
+                      <span className="block mt-1.5" style={{ fontSize: "0.68rem", color: "#4a4a4a", textTransform: "uppercase", letterSpacing: "0.09em" }}>{s.label}</span>
                     </div>
                   ))}
                 </div>
@@ -125,8 +102,6 @@ export default function HomePage() {
             </ScrollReveal>
           </div>
         </div>
-
-        {/* Bottom line */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px" style={{ width: "500px", background: "linear-gradient(90deg,transparent,#3b82f6,transparent)", filter: "blur(1px)" }} />
       </section>
 
@@ -139,9 +114,7 @@ export default function HomePage() {
           <div className="flex gap-8 justify-center flex-wrap">
             {clients.map((c) => (
               <div key={c.name} className="flex items-center gap-2" style={{ fontSize: "0.82rem", fontWeight: 600, color: "#4a4a4a" }}>
-                <span className="w-6.5 h-6.5 rounded-md flex items-center justify-center text-sm" style={{ background: "#141414", border: "1px solid #2e2e2e" }}>
-                  {c.icon}
-                </span>
+                <span className="w-6 h-6 rounded-md flex items-center justify-center text-sm" style={{ background: "#141414", border: "1px solid #2e2e2e" }}>{c.icon}</span>
                 {c.name}
               </div>
             ))}
@@ -169,7 +142,7 @@ export default function HomePage() {
                     <p style={{ color: "#9a9a9a", fontSize: "1rem", lineHeight: 1.8, maxWidth: "420px", marginBottom: "1rem" }}>
                       Thành lập năm 2014, Lavipco tập trung vào chiếu sáng đô thị, tín hiệu giao thông và sản xuất thiết bị điện — với kỹ sư có hơn 10 năm kinh nghiệm thực chiến.
                     </p>
-                    <Link href="/lien-he" className="inline-flex items-center gap-1.5" style={{ color: "#60a5fa", fontSize: "0.875rem", fontWeight: 600, transition: "gap 0.2s" }}>
+                    <Link href="/lien-he" className="inline-flex items-center gap-1.5" style={{ color: "#60a5fa", fontSize: "0.875rem", fontWeight: 600 }}>
                       Liên hệ tư vấn miễn phí →
                     </Link>
                   </div>
@@ -179,27 +152,18 @@ export default function HomePage() {
           </div>
 
           <ScrollRevealGroup className="grid gap-0 rounded-2xl overflow-hidden" style={{ border: "1px solid #232323", gridTemplateColumns: "1fr" }}>
-            <style>{`
-              @media(min-width:640px){.srv-grid{grid-template-columns:repeat(2,1fr)!important;}}
-              @media(min-width:1024px){.srv-grid{grid-template-columns:repeat(3,1fr)!important;}}
-              .srv-card:nth-child(3n){border-right:none;}
-            `}</style>
+            <style>{`@media(min-width:640px){.srv-grid{grid-template-columns:repeat(2,1fr)!important;}}@media(min-width:1024px){.srv-grid{grid-template-columns:repeat(3,1fr)!important;}}`}</style>
             <div className="grid gap-0 srv-grid" style={{ gridTemplateColumns: "1fr", background: "#232323", border: "1px solid #232323", borderRadius: "16px", overflow: "hidden" }}>
               {mainServices.map((s, i) => (
                 <ScrollRevealItem key={s.id}>
-                  <div
-                    className="srv-card relative overflow-hidden group cursor-pointer"
-                    style={{ background: "#0d0d0d", padding: "2.5rem 2.25rem", borderRight: "1px solid #232323", borderBottom: "1px solid #232323", transition: "background 0.25s" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "#141414")}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = "#0d0d0d")}
-                  >
+                  <div className="card-hover srv-card relative overflow-hidden group cursor-pointer" style={{ background: "#0d0d0d", padding: "2.5rem 2.25rem", borderRight: "1px solid #232323", borderBottom: "1px solid #232323" }}>
                     <div className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
                     <div className="w-11 h-11 rounded-xl mb-5 flex items-center justify-center text-xl" style={{ background: "linear-gradient(135deg,#1d4ed8,#06b6d4)", boxShadow: "0 4px 16px rgba(59,130,246,.3)" }}>
                       {["💡", "🚦", "✨", "📷", "🧠", "📦"][i]}
                     </div>
                     <h3 className="font-bold mb-2" style={{ fontSize: "0.975rem" }}>{s.title}</h3>
                     <p style={{ fontSize: "0.85rem", color: "#9a9a9a", lineHeight: 1.75 }}>{s.description}</p>
-                    <Link href="/linh-vuc" className="inline-flex items-center gap-1.5 mt-4 transition-all" style={{ color: "#60a5fa", fontSize: "0.78rem", fontWeight: 600 }}>
+                    <Link href="/linh-vuc" className="inline-flex items-center gap-1.5 mt-4" style={{ color: "#60a5fa", fontSize: "0.78rem", fontWeight: 600 }}>
                       Tìm hiểu thêm →
                     </Link>
                   </div>
@@ -235,19 +199,15 @@ export default function HomePage() {
               <div className="grid gap-4 prod-grid" style={{ gridTemplateColumns: "1fr" }}>
                 {featuredProducts.map((p) => (
                   <ScrollRevealItem key={p.id}>
-                    <Link href={`/san-pham/${p.slug}`} className="block group rounded-2xl overflow-hidden transition-all duration-300" style={{ background: "#0d0d0d", border: "1px solid #232323" }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(59,130,246,.4)"; e.currentTarget.style.transform = "translateY(-3px)" }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#232323"; e.currentTarget.style.transform = "none" }}>
+                    <Link href={`/san-pham/${p.slug}`} className="prod-card-hover block group rounded-2xl overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323" }}>
                       <div className="h-44 flex items-center justify-center text-5xl relative" style={{ background: "#141414", borderBottom: "1px solid #232323" }}>
                         {p.category === "DEN_DUONG_LED" ? "💡" : p.category === "DEN_PHA_LED" ? "🔦" : p.category === "TU_DIEU_KHIEN" ? "🖥️" : "🏮"}
                       </div>
                       <div className="p-5">
-                        <div className="mb-1" style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "#3b82f6", fontWeight: 700 }}>
-                          {p.specs[0]?.value}
-                        </div>
+                        <div className="mb-1" style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "#3b82f6", fontWeight: 700 }}>{p.specs[0]?.value}</div>
                         <h3 className="font-bold mb-2 leading-snug" style={{ fontSize: "0.9rem" }}>{p.name}</h3>
                         <p className="line-clamp-2 mb-4" style={{ fontSize: "0.8rem", color: "#9a9a9a", lineHeight: 1.7 }}>{p.shortDesc}</p>
-                        <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: "#60a5fa" }}>
-                          Xem chi tiết →
-                        </div>
+                        <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ color: "#60a5fa" }}>Xem chi tiết →</div>
                       </div>
                     </Link>
                   </ScrollRevealItem>
@@ -258,7 +218,7 @@ export default function HomePage() {
 
           <ScrollReveal delay={0.2}>
             <div className="text-center mt-10">
-              <Link href="/san-pham" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold transition-all" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e", fontSize: "0.875rem" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#141414" }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent" }}>
+              <Link href="/san-pham" className="call-btn inline-flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold" style={{ color: "#f8f8f8", border: "1px solid #2e2e2e", fontSize: "0.875rem" }}>
                 Xem tất cả sản phẩm →
               </Link>
             </div>
@@ -285,19 +245,12 @@ export default function HomePage() {
             </ScrollReveal>
           </div>
 
-          {/* Bento grid */}
           <div className="grid gap-4" style={{ gridTemplateColumns: "1fr" }}>
             <style>{`@media(min-width:700px){.bento-grid{grid-template-columns:repeat(12,1fr)!important;}.b1{grid-column:span 7}.b2{grid-column:span 5}.b3,.b4,.b5{grid-column:span 4}}`}</style>
             <div className="grid gap-4 bento-grid" style={{ gridTemplateColumns: "1fr" }}>
               {featuredProjects.map((pr, i) => (
                 <ScrollReveal key={pr.id} delay={i * 0.05} className={["b1", "b2", "b3", "b4", "b5"][i]}>
-                  <Link
-                    href={`/du-an/${pr.slug}`}
-                    className="block relative rounded-2xl overflow-hidden cursor-pointer"
-                    style={{ minHeight: i < 2 ? "320px" : "260px", border: "1px solid #232323", transition: "transform 0.3s, box-shadow 0.3s" }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.018)"; e.currentTarget.style.boxShadow = "0 24px 60px rgba(0,0,0,.6)" }}
-                    onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none" }}
-                  >
+                  <Link href={`/du-an/${pr.slug}`} className="proj-card-hover block relative rounded-2xl overflow-hidden cursor-pointer" style={{ minHeight: i < 2 ? "320px" : "260px", border: "1px solid #232323" }}>
                     <div className="absolute inset-0 flex items-center justify-center text-7xl opacity-15" style={{ background: projectGradients[i], fontSize: "5.5rem" }}>
                       {projectEmoji[i]}
                     </div>
@@ -320,7 +273,7 @@ export default function HomePage() {
 
           <ScrollReveal delay={0.3}>
             <div className="text-center mt-10">
-              <Link href="/du-an" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold transition-all" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e", fontSize: "0.875rem" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#141414" }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent" }}>
+              <Link href="/du-an" className="call-btn inline-flex items-center gap-2 px-6 py-2.5 rounded-lg font-semibold" style={{ color: "#f8f8f8", border: "1px solid #2e2e2e", fontSize: "0.875rem" }}>
                 Xem tất cả dự án →
               </Link>
             </div>
@@ -360,12 +313,7 @@ export default function HomePage() {
               <div className="grid gap-0 why-grid" style={{ gridTemplateColumns: "1fr" }}>
                 {whyItems.map((w) => (
                   <ScrollRevealItem key={w.num}>
-                    <div
-                      className="p-8 cursor-default transition-all"
-                      style={{ background: "#0d0d0d", borderRight: "1px solid #232323", borderBottom: "1px solid #232323" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = "#141414")}
-                      onMouseLeave={(e) => (e.currentTarget.style.background = "#0d0d0d")}
-                    >
+                    <div className="why-card p-8 cursor-default" style={{ background: "#0d0d0d", borderRight: "1px solid #232323", borderBottom: "1px solid #232323" }}>
                       <span className="block mb-4" style={{ fontSize: "0.68rem", color: "#3b82f6", fontWeight: 700, letterSpacing: "0.1em" }}>{w.num}</span>
                       <h3 className="font-bold mb-2" style={{ fontSize: "0.975rem" }}>{w.title}</h3>
                       <p style={{ fontSize: "0.845rem", color: "#9a9a9a", lineHeight: 1.75 }}>{w.desc}</p>
@@ -419,7 +367,7 @@ export default function HomePage() {
                 <a href={`tel:${companyInfo.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all">
                   📞 &nbsp;{companyInfo.phone}
                 </a>
-                <Link href="/lien-he" className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold transition-all" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#141414" }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent" }}>
+                <Link href="/lien-he" className="btn-outline inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold">
                   Gửi yêu cầu báo giá
                 </Link>
               </div>
@@ -430,7 +378,7 @@ export default function HomePage() {
                   { icon: "🕐", text: "Thứ 2 – Thứ 7 · 7:00–17:30 · Hotline 24/7" },
                 ].map(({ icon, text }) => (
                   <div key={text} className="flex items-start gap-2.5 text-left" style={{ fontSize: "0.85rem", color: "#9a9a9a" }}>
-                    <div className="w-8.5 h-8.5 rounded-lg flex items-center justify-center shrink-0 text-sm" style={{ background: "#141414", border: "1px solid #2e2e2e" }}>{icon}</div>
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-sm" style={{ background: "#141414", border: "1px solid #2e2e2e" }}>{icon}</div>
                     <div>{text}</div>
                   </div>
                 ))}
@@ -457,7 +405,7 @@ export default function HomePage() {
               <Link href="/lien-he" className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all">
                 Liên hệ ngay →
               </Link>
-              <a href={`tel:${companyInfo.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold transition-all" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e" }} onMouseEnter={(e) => { e.currentTarget.style.background = "#141414" }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent" }}>
+              <a href={`tel:${companyInfo.phone.replace(/\s/g, "")}`} className="btn-outline inline-flex items-center gap-2 px-7 py-3 rounded-xl text-base font-semibold">
                 📞 {companyInfo.phone}
               </a>
             </div>

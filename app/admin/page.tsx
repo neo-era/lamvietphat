@@ -50,7 +50,7 @@ export default async function AdminDashboard() {
       {/* Stats */}
       <div className="grid gap-4 mb-8" style={{ gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))" }}>
         {statCards.map((card) => (
-          <Link key={card.label} href={card.href} className="block rounded-xl p-5 transition-all" style={{ background: "#0d0d0d", border: `1px solid ${card.alert ? "rgba(59,130,246,.4)" : "#1c1c1c"}` }} onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(59,130,246,.4)")} onMouseLeave={(e) => (e.currentTarget.style.borderColor = card.alert ? "rgba(59,130,246,.4)" : "#1c1c1c")}>
+          <Link key={card.label} href={card.href} className="admin-stat-card block rounded-xl p-5" style={{ background: "#0d0d0d", border: `1px solid ${card.alert ? "rgba(59,130,246,.4)" : "#1c1c1c"}` }}>
             <div className="flex items-center justify-between mb-3">
               <span className="text-2xl">{card.icon}</span>
               {card.alert && <span className="w-2.5 h-2.5 rounded-full" style={{ background: "#ef4444" }} />}
