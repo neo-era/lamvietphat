@@ -40,13 +40,14 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   return (
     <>
+      <style>{`.breadcrumb-link{color:#4a4a4a;transition:color .2s}.breadcrumb-link:hover{color:#9a9a9a}.call-btn{background:transparent}.call-btn:hover{background:#141414}.related-card:hover{border-color:rgba(59,130,246,.4)!important;transform:translateY(-2px)}`}</style>
       {/* Breadcrumb */}
       <div style={{ paddingTop: "5.5rem", paddingBottom: "0" }}>
         <div className="container-pad py-4">
           <nav className="flex items-center gap-2" style={{ fontSize: "0.8rem", color: "#4a4a4a" }}>
-            <Link href="/" style={{ color: "#4a4a4a" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#9a9a9a")} onMouseLeave={(e) => (e.currentTarget.style.color = "#4a4a4a")}>Trang chủ</Link>
+            <Link href="/" className="breadcrumb-link">Trang chủ</Link>
             <span>/</span>
-            <Link href="/san-pham" style={{ color: "#4a4a4a" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#9a9a9a")} onMouseLeave={(e) => (e.currentTarget.style.color = "#4a4a4a")}>Sản phẩm</Link>
+            <Link href="/san-pham" className="breadcrumb-link">Sản phẩm</Link>
             <span>/</span>
             <span style={{ color: "#9a9a9a" }}>{product.name}</span>
           </nav>
@@ -106,7 +107,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                     <a href="#quote-form" className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-base font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all">
                       Yêu cầu báo giá ngay
                     </a>
-                    <a href="tel:0989725507" className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-base font-semibold transition-all" style={{ background: "transparent", color: "#f8f8f8", border: "1px solid #2e2e2e" }} onMouseEnter={(e) => (e.currentTarget.style.background = "#141414")} onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}>
+                    <a href="tel:0989725507" className="call-btn flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-base font-semibold transition-all" style={{ color: "#f8f8f8", border: "1px solid #2e2e2e" }}>
                       📞 Gọi ngay: 0989 725 507
                     </a>
                   </div>
@@ -158,7 +159,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               <div className="grid gap-4 related-grid" style={{ gridTemplateColumns: "1fr" }}>
                 {related.map((p) => (
                   <ScrollReveal key={p.id}>
-                    <Link href={`/san-pham/${p.slug}`} className="block rounded-2xl overflow-hidden transition-all" style={{ background: "#141414", border: "1px solid #232323" }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(59,130,246,.4)"; e.currentTarget.style.transform = "translateY(-2px)" }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#232323"; e.currentTarget.style.transform = "none" }}>
+                    <Link href={`/san-pham/${p.slug}`} className="related-card block rounded-2xl overflow-hidden transition-all" style={{ background: "#141414", border: "1px solid #232323" }}>
                       <div className="h-36 flex items-center justify-center text-5xl" style={{ background: "#0d0d0d", borderBottom: "1px solid #232323" }}>
                         {categoryEmoji[p.category]}
                       </div>

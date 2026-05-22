@@ -1,0 +1,196 @@
+/* [project]/styles/globals.css [app-client] (css) */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif; --color-bg: #070707; --color-surface: #0d0d0d; --color-surface2: #141414; --color-surface3: #1c1c1c; --color-border: #232323; --color-border2: #2e2e2e; --color-fg: #f8f8f8; --color-fg2: #9a9a9a; --color-fg3: #4a4a4a; --color-blue: #1d4ed8; --color-blue-mid: #3b82f6; --color-blue-light:#60a5fa; --color-cyan: #06b6d4; --color-cyan-light:#67e8f9; --color-green: #16a34a; --color-green-mid: #22c55e; --color-amber: #f59e0b; --color-red: #ef4444;
+}
+
+@layer base {
+  *, :before, :after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    color: #f8f8f8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #070707;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #070707;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2e2e2e;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a3a;
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, .3);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -.025em;
+    line-height: 1.15;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(110deg, #60a5fa 0%, #06b6d4 55%, #67e8f9 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .gradient-blue {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, .3), 0 4px 20px rgba(59, 130, 246, .25);
+  }
+
+  .glow-blue-hover:hover {
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, .4), 0 6px 28px rgba(59, 130, 246, .4);
+  }
+
+  .border-top-glow:before {
+    content: "";
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0), #3b82f6, rgba(0, 0, 0, 0));
+    height: 1px;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+  }
+
+  .section-pad {
+    padding-top: max(5rem, min(10vw, 8rem));
+    padding-bottom: max(5rem, min(10vw, 8rem));
+  }
+
+  .container-pad {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 max(1.25rem, min(4vw, 2.5rem));
+  }
+}
+
+.tag-label {
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #3b82f6;
+  align-items: center;
+  gap: .45rem;
+  font-size: .7rem;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.tag-label:before, .tag-label:after {
+  content: "";
+  background: #3b82f6;
+  width: 18px;
+  height: 1px;
+  display: block;
+}
+
+.hr-gradient {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #232323 20%, #232323 80%, rgba(0, 0, 0, 0) 100%);
+  border: none;
+  height: 1px;
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .055) 1px, rgba(0, 0, 0, 0) 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(75% 65% at 50% 0, #000 20%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(75% 65% at 50% 0, #000 20%, rgba(0, 0, 0, 0) 100%);
+}
+
+.float-call-anim {
+  animation: 3s ease-in-out infinite ring;
+}
+
+.float-call-anim:hover {
+  animation: none;
+}
+
+@keyframes ring {
+  0%, 90%, 100% {
+    transform: scale(1)rotate(0);
+  }
+
+  92% {
+    transform: scale(1.08)rotate(-12deg);
+  }
+
+  94% {
+    transform: scale(1.08)rotate(12deg);
+  }
+
+  96% {
+    transform: scale(1.08)rotate(-8deg);
+  }
+
+  98% {
+    transform: scale(1.08)rotate(8deg);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .35;
+    transform: scale(.75);
+  }
+}
+
+.pulse-dot {
+  animation: 2s ease-in-out infinite pulse-dot;
+}
+
+@media (min-width: 500px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/*# sourceMappingURL=styles_globals_css_bad6b30c._.single.css.map*/

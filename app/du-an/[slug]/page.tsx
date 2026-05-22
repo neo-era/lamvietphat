@@ -48,13 +48,14 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
   return (
     <>
+      <style>{`.breadcrumb-link{color:#4a4a4a;transition:color .2s}.breadcrumb-link:hover{color:#9a9a9a}.call-btn{background:transparent;transition:background .2s}.call-btn:hover{background:#141414}.related-proj-card{transition:transform .3s,box-shadow .3s}.related-proj-card:hover{transform:scale(1.02);box-shadow:0 16px 40px rgba(0,0,0,.5)}`}</style>
       {/* Breadcrumb */}
       <div style={{ paddingTop: "5.5rem" }}>
         <div className="container-pad py-4">
           <nav className="flex items-center gap-2 flex-wrap" style={{ fontSize: "0.8rem", color: "#4a4a4a" }}>
-            <Link href="/" style={{ color: "#4a4a4a" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#9a9a9a")} onMouseLeave={(e) => (e.currentTarget.style.color = "#4a4a4a")}>Trang chủ</Link>
+            <Link href="/" className="breadcrumb-link">Trang chủ</Link>
             <span>/</span>
-            <Link href="/du-an" style={{ color: "#4a4a4a" }} onMouseEnter={(e) => (e.currentTarget.style.color = "#9a9a9a")} onMouseLeave={(e) => (e.currentTarget.style.color = "#4a4a4a")}>Dự án</Link>
+            <Link href="/du-an" className="breadcrumb-link">Dự án</Link>
             <span>/</span>
             <span style={{ color: "#9a9a9a" }}>{project.title}</span>
           </nav>
@@ -133,10 +134,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                       </Link>
                       <a
                         href="tel:0989725507"
-                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold mt-2 transition-all"
-                        style={{ background: "transparent", color: "#9a9a9a", border: "1px solid #232323" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = "#141414")}
-                        onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                        className="call-btn flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold mt-2"
+                        style={{ color: "#9a9a9a", border: "1px solid #232323" }}
                       >
                         📞 0989 725 507
                       </a>
@@ -164,10 +163,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                   <ScrollReveal key={p.id} delay={i * 0.08}>
                     <Link
                       href={`/du-an/${p.slug}`}
-                      className="block relative rounded-2xl overflow-hidden"
-                      style={{ height: "200px", border: "1px solid #232323", transition: "transform 0.3s, box-shadow 0.3s" }}
-                      onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.02)"; e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,.5)" }}
-                      onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none" }}
+                      className="related-proj-card block relative rounded-2xl overflow-hidden"
+                      style={{ height: "200px", border: "1px solid #232323" }}
                     >
                       <div className="absolute inset-0 flex items-center justify-center" style={{ background: gradients[(projects.findIndex(pr => pr.id === p.id)) % gradients.length], fontSize: "3rem" }}>
                         <span style={{ opacity: 0.15 }}>{emojis[(projects.findIndex(pr => pr.id === p.id)) % emojis.length]}</span>
