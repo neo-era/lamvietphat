@@ -48,7 +48,7 @@ export function Header() {
           WebkitBackdropFilter: scrolled ? "blur(18px)" : "none",
         }}
       >
-        <div className="container-pad flex items-center justify-between gap-6">
+        <div className="container-pad flex items-center justify-between gap-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
@@ -56,18 +56,18 @@ export function Header() {
               alt="Lavipco"
               width={180}
               height={60}
-              style={{ height: "56px", width: "auto" }}
+              style={{ height: "42px", width: "auto" }}
               priority
             />
           </Link>
 
-          {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-7 list-none">
+          {/* Desktop nav — show only on lg+ (>=1024px) to fit 8 items horizontally */}
+          <ul className="hidden lg:flex items-center gap-5 xl:gap-7 list-none">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-sm font-medium transition-colors duration-200"
+                  className="text-sm font-medium transition-colors duration-200 whitespace-nowrap"
                   style={{
                     color: pathname === link.href ? "#f8f8f8" : "#9a9a9a",
                   }}
@@ -84,14 +84,14 @@ export function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/lien-he"
-              className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 gradient-blue glow-blue hover:opacity-90"
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 gradient-blue glow-blue hover:opacity-90 whitespace-nowrap"
             >
               Liên hệ ngay
             </Link>
 
-            {/* Hamburger */}
+            {/* Hamburger — show below lg breakpoint */}
             <button
-              className="md:hidden flex flex-col gap-1.5 p-1.5 cursor-pointer border-0 bg-transparent"
+              className="lg:hidden flex flex-col gap-1.5 p-1.5 cursor-pointer border-0 bg-transparent"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Menu"
             >
@@ -124,7 +124,7 @@ export function Header() {
 
       {/* Mobile drawer */}
       <div
-        className="md:hidden fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 transition-opacity duration-300"
+        className="lg:hidden fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 transition-opacity duration-300"
         style={{
           background: "rgba(7,7,7,0.97)",
           backdropFilter: "blur(20px)",
