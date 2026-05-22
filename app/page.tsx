@@ -40,6 +40,62 @@ const whyItems = [
   { num: "04", title: "Hậu mãi 24/7", desc: "Hỗ trợ kỹ thuật 24/7, bảo hành công trình, bảo trì định kỳ — đồng hành lâu dài sau bàn giao." },
 ]
 
+const aboutRows = [
+  { icon: "🏢", label: "Tên đầy đủ", value: "Công ty TNHH Kỹ Nghệ Lâm Việt Phát" },
+  { icon: "📅", label: "Thành lập", value: "22/05/2014" },
+  { icon: "📍", label: "Địa chỉ", value: "63/23A, Liên Khu 16-18, P. Bình Trị Đông, TP.HCM" },
+  { icon: "👔", label: "Giám đốc", value: "Nguyễn Kim Thúy Quỳnh" },
+  { icon: "🔏", label: "MST", value: "1101748509" },
+  { icon: "⚡", label: "Lĩnh vực", value: "Xây lắp, sản xuất thiết bị chiếu sáng" },
+  { icon: "🌐", label: "Phạm vi", value: "Toàn quốc" },
+]
+
+const projectsHighlight = [
+  { icon: "💡", title: "Chiếu sáng Mỹ Phước 3 — Bình Dương", badge: "✓ 3,2 tỷ · 2018" },
+  { icon: "🏖️", title: "Mở rộng HTCS Phú Quốc — Kiên Giang", badge: "✓ 2,47 tỷ · 2017" },
+  { icon: "🏙️", title: "Chiếu sáng đường Tân Bình, TP.HCM", badge: "✓ 2,37 tỷ · 2023" },
+  { icon: "☀️", title: "Solar 557kWp — Hóc Môn, TP.HCM", badge: "✓ 1,54 tỷ · 2019" },
+  { icon: "🎡", title: "Happyland Khu phức hợp — Long An", badge: "✓ 1,6 tỷ · 2019" },
+]
+
+const certificates = [
+  { icon: "📋", name: "Giấy phép kinh doanh", desc: "MST 1101748509 — Sở KH&ĐT TP.HCM cấp · Hiệu lực vĩnh viễn" },
+  { icon: "🏗️", name: "Chứng chỉ năng lực xây dựng", desc: "Thi công công trình điện dân dụng, công nghiệp & hạ tầng kỹ thuật" },
+  { icon: "⚡", name: "Chứng chỉ hành nghề điện", desc: "Thiết kế, giám sát & thi công hệ thống điện, chiếu sáng & tín hiệu" },
+  { icon: "☀️", name: "Nhà thầu điện mặt trời", desc: "Lắp đặt hệ thống solar hòa lưới điện lực quốc gia — đã triển khai hơn 1.200 kWp" },
+]
+
+const partners = [
+  { icon: "🏭", name: "Becamex IDCP" },
+  { icon: "🏗️", name: "Ban QLDA Q.Tân Bình" },
+  { icon: "🏖️", name: "BQLDA Phú Quốc" },
+  { icon: "🏙️", name: "Cty CP Khang Thông" },
+  { icon: "⚡", name: "Cty XD Rạng Đông" },
+  { icon: "🌿", name: "Nông Nghiệp Thành Công" },
+  { icon: "🔧", name: "Cty XD-CN-VT Miền Nam" },
+]
+
+const bigStats = [
+  { value: "11+", label: "Năm hoạt động", sub: "kể từ khi thành lập 2014" },
+  { value: "50+", label: "Công trình lớn", sub: "đã hoàn thành trên toàn quốc" },
+  { value: "15+", label: "Kỹ sư, kỹ thuật viên", sub: "và công nhân lành nghề" },
+  { value: "10+", label: "Tỉnh thành", sub: "đã thi công" },
+]
+
+const processSteps = [
+  { num: "01", title: "Tiếp nhận & Khảo sát", desc: "Khảo sát thực địa, đánh giá hiện trạng", tag: "Miễn phí", tagClass: "done" },
+  { num: "02", title: "Thiết kế & Dự toán", desc: "Bản vẽ kỹ thuật, báo giá chi tiết", tag: "3–5 ngày", tagClass: "act" },
+  { num: "03", title: "Thi công & Giám sát", desc: "Triển khai theo thiết kế, báo cáo định kỳ", tag: "Theo HĐ", tagClass: "act" },
+  { num: "04", title: "Nghiệm thu & Bàn giao", desc: "Kiểm tra, thử nghiệm, hoàn thiện hồ sơ", tag: "Sau thi công", tagClass: "wait" },
+  { num: "05", title: "Bảo hành & Hỗ trợ", desc: "Bảo hành công trình + hỗ trợ 24/7", tag: "Dài hạn", tagClass: "done" },
+]
+
+const tagStyles: Record<string, { bg: string; color: string }> = {
+  done: { bg: "rgba(22,163,74,.15)", color: "#4ade80" },
+  act: { bg: "rgba(59,130,246,.15)", color: "#60a5fa" },
+  wait: { bg: "rgba(255,255,255,.05)", color: "#4a4a4a" },
+}
+
 export default function HomePage() {
   return (
     <>
@@ -121,6 +177,58 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* ═══ ABOUT — HỒ SƠ CÔNG TY ═══ */}
+      <section className="section-pad" id="about">
+        <div className="container-pad">
+          <style>{`@media(min-width:900px){.about-hl{grid-template-columns:1fr 1fr!important;gap:5rem!important;align-items:center}}`}</style>
+          <div className="grid gap-12 about-hl" style={{ gridTemplateColumns: "1fr" }}>
+            <ScrollReveal>
+              <div className="tag-label mb-5">Về chúng tôi</div>
+              <h2 className="font-black mb-4" style={{ fontSize: "clamp(2rem,4.5vw,3.25rem)", letterSpacing: "-0.03em", lineHeight: 1.12 }}>
+                Công ty TNHH<br /><span className="gradient-text">Kỹ Nghệ Lâm Việt Phát</span>
+              </h2>
+              <p className="mb-6" style={{ color: "#9a9a9a", fontSize: "0.975rem", lineHeight: 1.8 }}>
+                Thành lập năm 2014, Lavipco là đơn vị chuyên tư vấn, thiết kế và thi công các công trình điện — chiếu sáng đô thị, đèn tín hiệu giao thông, điện năng lượng mặt trời — tại TP.HCM và nhiều tỉnh thành trên cả nước. Cung cấp giải pháp chiếu sáng thông minh.
+              </p>
+              <ul className="flex flex-col gap-2.5 mb-7 list-none">
+                {["Hơn 11 năm kinh nghiệm thi công điện quy mô lớn.", "15+ kỹ sư, kỹ thuật viên và công nhân lành nghề."].map((t) => (
+                  <li key={t} className="flex items-start gap-2.5" style={{ fontSize: "0.875rem", color: "#9a9a9a" }}>
+                    <span className="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full font-bold" style={{ background: "rgba(59,130,246,.12)", border: "1px solid rgba(59,130,246,.25)", color: "#60a5fa", fontSize: "0.65rem" }}>✓</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex gap-3 flex-wrap">
+                <Link href="#chungchi" className="btn-outline inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold">Xem chứng chỉ &amp; năng lực</Link>
+                <Link href="/lien-he" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all">Liên hệ ngay →</Link>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1}>
+              <div className="relative rounded-2xl overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323", minHeight: "320px" }}>
+                <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
+                <div className="p-8 flex flex-col gap-4">
+                  <div className="flex items-center gap-3 pb-4" style={{ borderBottom: "1px solid #232323" }}>
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#ef4444" }} />
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#f59e0b" }} />
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#22c55e" }} />
+                    <span className="ml-2" style={{ fontSize: "0.75rem", color: "#4a4a4a" }}>Hồ sơ công ty — Lavipco</span>
+                  </div>
+                  {aboutRows.map((r) => (
+                    <div key={r.label} className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg" style={{ background: "#141414", border: "1px solid #2e2e2e", fontSize: "0.78rem" }}>
+                      <span style={{ color: "#9a9a9a" }}>{r.icon} {r.label}</span>
+                      <span className="text-right shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-semibold" style={{ background: "rgba(59,130,246,.1)", border: "1px solid rgba(59,130,246,.2)", color: "#60a5fa", fontSize: "0.7rem" }}>{r.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      <hr className="hr-gradient" />
 
       {/* ═══ SERVICES OVERVIEW ═══ */}
       <section className="section-pad" id="services">
@@ -228,6 +336,60 @@ export default function HomePage() {
 
       <hr className="hr-gradient" />
 
+      {/* ═══ PROJECTS HIGHLIGHT — TEXT + LIST CARD ═══ */}
+      <section className="section-pad" id="projects">
+        <div className="container-pad">
+          <style>{`@media(min-width:900px){.proj-hl{grid-template-columns:1fr 1fr!important;gap:5rem!important;align-items:center}}`}</style>
+          <div className="grid gap-12 proj-hl" style={{ gridTemplateColumns: "1fr" }}>
+            <ScrollReveal>
+              <div className="tag-label mb-5">Dự án tiêu biểu</div>
+              <h2 className="font-black mb-4" style={{ fontSize: "clamp(2rem,4.5vw,3.25rem)", letterSpacing: "-0.03em", lineHeight: 1.12 }}>
+                Những công trình<br /><span className="gradient-text">chúng tôi tự hào</span>
+              </h2>
+              <p className="mb-6" style={{ color: "#9a9a9a", fontSize: "0.975rem", lineHeight: 1.8 }}>
+                Từ 2014 đến nay, Lavipco đã hoàn thành hơn 30 công trình lớn trải dài từ TP.HCM đến Bình Dương, Long An, Kiên Giang, Bến Tre, Quảng Nam — tổng giá trị thi công hàng chục tỷ đồng.
+              </p>
+              <ul className="flex flex-col gap-2.5 mb-7 list-none">
+                {[
+                  "Chiếu sáng đường phố, khu công nghiệp & khu đô thị mới",
+                  "Điện năng lượng mặt trời hòa lưới công suất lớn",
+                  "Đèn tín hiệu giao thông tại nhiều tỉnh thành",
+                  "Hồ sơ nghiệm thu đầy đủ, bảo hành theo hợp đồng",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-2.5" style={{ fontSize: "0.875rem", color: "#9a9a9a" }}>
+                    <span className="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full font-bold" style={{ background: "rgba(59,130,246,.12)", border: "1px solid rgba(59,130,246,.25)", color: "#60a5fa", fontSize: "0.65rem" }}>✓</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/du-an" className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold text-white gradient-blue glow-blue hover:opacity-90 transition-all">Xem toàn bộ dự án →</Link>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1}>
+              <div className="relative rounded-2xl overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323", minHeight: "320px" }}>
+                <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
+                <div className="p-8 flex flex-col gap-4">
+                  <div className="flex items-center gap-3 pb-4" style={{ borderBottom: "1px solid #232323" }}>
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#ef4444" }} />
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#f59e0b" }} />
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#22c55e" }} />
+                    <span className="ml-2" style={{ fontSize: "0.75rem", color: "#4a4a4a" }}>Dự án tiêu biểu — 2024</span>
+                  </div>
+                  {projectsHighlight.map((p) => (
+                    <div key={p.title} className="flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg" style={{ background: "#141414", border: "1px solid #2e2e2e", fontSize: "0.78rem" }}>
+                      <span style={{ color: "#9a9a9a" }}>{p.icon} {p.title}</span>
+                      <span className="text-right shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-semibold" style={{ background: "rgba(59,130,246,.1)", border: "1px solid rgba(59,130,246,.2)", color: "#60a5fa", fontSize: "0.7rem" }}>{p.badge}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      <hr className="hr-gradient" />
+
       {/* ═══ FEATURED PROJECTS — BENTO ═══ */}
       <section className="section-pad" style={{ background: "#0d0d0d" }}>
         <div className="container-pad">
@@ -283,6 +445,93 @@ export default function HomePage() {
 
       <hr className="hr-gradient" />
 
+      {/* ═══ CERTIFICATES + PARTNERS ═══ */}
+      <section className="section-pad" id="chungchi">
+        <div className="container-pad">
+          <style>{`@media(min-width:900px){.cert-head{grid-template-columns:1fr 1fr!important;align-items:end}}@media(min-width:640px){.cert-grid{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+          <div className="grid gap-8 mb-14 pb-14 cert-head" style={{ gridTemplateColumns: "1fr", borderBottom: "1px solid #232323" }}>
+            <div>
+              <ScrollReveal><div className="tag-label mb-5">Năng lực pháp lý</div></ScrollReveal>
+              <ScrollReveal delay={0.05}>
+                <h2 className="font-black" style={{ fontSize: "clamp(2.2rem,5vw,3.8rem)", letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+                  Chứng chỉ &amp;<br /><span className="gradient-text">Đối tác tiêu biểu</span>
+                </h2>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal delay={0.1}>
+              <p style={{ color: "#9a9a9a", fontSize: "1rem", lineHeight: 1.8, maxWidth: "420px" }}>
+                Lavipco hoạt động với đầy đủ giấy phép kinh doanh, chứng chỉ năng lực xây dựng và chứng chỉ hành nghề theo quy định của Bộ Xây dựng — đảm bảo tính pháp lý tuyệt đối cho mọi công trình.
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <ScrollRevealGroup>
+            <div className="grid gap-4 cert-grid" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
+              {certificates.map((c) => (
+                <ScrollRevealItem key={c.name}>
+                  <div className="cert-card-hover relative rounded-2xl text-center overflow-hidden p-7 px-5 transition-all" style={{ background: "#0d0d0d", border: "1px solid #232323" }}>
+                    <div className="absolute top-0 left-0 right-0 h-px opacity-0 transition-opacity" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
+                    <div className="text-3xl mb-3.5">{c.icon}</div>
+                    <div className="font-bold mb-1.5 leading-snug" style={{ fontSize: "0.875rem" }}>{c.name}</div>
+                    <div style={{ fontSize: "0.75rem", color: "#4a4a4a", lineHeight: 1.65 }}>{c.desc}</div>
+                  </div>
+                </ScrollRevealItem>
+              ))}
+            </div>
+          </ScrollRevealGroup>
+
+          <ScrollReveal delay={0.2}>
+            <div className="flex gap-3 flex-wrap justify-center items-center mt-12 pt-12" style={{ borderTop: "1px solid #232323" }}>
+              <p className="w-full text-center mb-2" style={{ fontSize: "0.68rem", color: "#4a4a4a", textTransform: "uppercase", letterSpacing: "0.14em" }}>
+                Chủ đầu tư &amp; nhà thầu chính đã hợp tác
+              </p>
+              {partners.map((p) => (
+                <div key={p.name} className="partner-hover flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap transition-all" style={{ fontSize: "0.8rem", fontWeight: 600, color: "#4a4a4a", background: "#0d0d0d", border: "1px solid #232323" }}>
+                  <span className="text-base">{p.icon}</span>{p.name}
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <hr className="hr-gradient" />
+
+      {/* ═══ BIG STATS ═══ */}
+      <section className="section-pad" id="nang-luc">
+        <div className="container-pad">
+          <div className="text-center mb-14">
+            <ScrollReveal><div className="tag-label mb-4">Năng lực</div></ScrollReveal>
+            <ScrollReveal delay={0.05}>
+              <h2 className="font-black" style={{ fontSize: "clamp(2rem,4.5vw,3.5rem)", letterSpacing: "-0.03em", lineHeight: 1.12 }}>
+                Con số nói lên<br /><span className="gradient-text">tất cả</span>
+              </h2>
+            </ScrollReveal>
+          </div>
+
+          <ScrollRevealGroup>
+            <style>{`@media(min-width:768px){.bigstats-grid{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+            <div className="grid gap-12 bigstats-grid" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
+              {bigStats.map((s) => (
+                <ScrollRevealItem key={s.value}>
+                  <div className="text-center">
+                    <span className="block font-black leading-none" style={{ fontSize: "clamp(3rem,6.5vw,5rem)", background: "linear-gradient(135deg,#60a5fa,#67e8f9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", filter: "drop-shadow(0 0 20px rgba(96,165,250,.3))" }}>
+                      {s.value}
+                    </span>
+                    <div className="mx-auto my-3 h-0.5 w-10" style={{ background: "linear-gradient(90deg,#1d4ed8,#06b6d4)" }} />
+                    <p style={{ color: "#9a9a9a", fontSize: "0.875rem", lineHeight: 1.5 }}>
+                      {s.label}<br />{s.sub}
+                    </p>
+                  </div>
+                </ScrollRevealItem>
+              ))}
+            </div>
+          </ScrollRevealGroup>
+        </div>
+      </section>
+
+      <hr className="hr-gradient" />
+
       {/* ═══ WHY LAVIPCO ═══ */}
       <section className="section-pad">
         <div className="container-pad">
@@ -323,6 +572,62 @@ export default function HomePage() {
               </div>
             </div>
           </ScrollRevealGroup>
+        </div>
+      </section>
+
+      <hr className="hr-gradient" />
+
+      {/* ═══ PROCESS — 5 STEPS ═══ */}
+      <section className="section-pad">
+        <div className="container-pad">
+          <style>{`@media(min-width:900px){.proc-hl{grid-template-columns:1fr 1fr!important;gap:5rem!important;align-items:center}}`}</style>
+          <div className="grid gap-12 proc-hl" style={{ gridTemplateColumns: "1fr" }}>
+            <ScrollReveal>
+              <div className="tag-label mb-5">Quy trình làm việc</div>
+              <h2 className="font-black mb-4" style={{ fontSize: "clamp(2rem,4.5vw,3.25rem)", letterSpacing: "-0.03em", lineHeight: 1.12 }}>
+                Từ ý tưởng đến<br /><span className="gradient-text">công trình hoàn chỉnh</span>
+              </h2>
+              <p className="mb-6" style={{ color: "#9a9a9a", fontSize: "0.975rem", lineHeight: 1.8 }}>
+                Quy trình 5 bước minh bạch, chuyên nghiệp — khách hàng luôn nắm rõ tiến độ và chủ động trong từng quyết định.
+              </p>
+              <ul className="flex flex-col gap-2.5 mb-7 list-none">
+                {[
+                  "Khảo sát thực địa miễn phí, không ràng buộc",
+                  "Báo giá chi tiết, minh bạch từng hạng mục",
+                  "Cập nhật tiến độ thi công hàng tuần",
+                  "Bàn giao hồ sơ pháp lý đầy đủ, đúng quy định",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-2.5" style={{ fontSize: "0.875rem", color: "#9a9a9a" }}>
+                    <span className="shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full font-bold" style={{ background: "rgba(59,130,246,.12)", border: "1px solid rgba(59,130,246,.25)", color: "#60a5fa", fontSize: "0.65rem" }}>✓</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/lien-he" className="btn-outline inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold">Bắt đầu dự án của bạn</Link>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1}>
+              <div className="relative rounded-2xl overflow-hidden" style={{ background: "#0d0d0d", border: "1px solid #232323" }}>
+                <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg,transparent,#3b82f6,transparent)" }} />
+                <div className="flex flex-col">
+                  {processSteps.map((s, i) => (
+                    <div key={s.num} className="proc-row-hover flex items-center gap-4 px-6 py-4 transition-all" style={{ borderBottom: i < processSteps.length - 1 ? "1px solid #232323" : "none" }}>
+                      <div className="w-8 h-8 rounded-full shrink-0 flex items-center justify-center font-extrabold text-white" style={{ background: "linear-gradient(135deg,#1d4ed8,#06b6d4)", fontSize: "0.72rem" }}>
+                        {s.num}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold leading-tight" style={{ fontSize: "0.85rem" }}>{s.title}</h4>
+                        <p style={{ fontSize: "0.75rem", color: "#4a4a4a" }}>{s.desc}</p>
+                      </div>
+                      <span className="ml-auto shrink-0 px-2.5 py-1 rounded-full font-bold uppercase" style={{ fontSize: "0.65rem", letterSpacing: "0.06em", background: tagStyles[s.tagClass].bg, color: tagStyles[s.tagClass].color }}>
+                        {s.tag}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

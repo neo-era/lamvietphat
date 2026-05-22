@@ -193,6 +193,13 @@
 .service-card-hover { transition: background 0.25s, border-color 0.25s; }
 .service-card-hover:hover { background: #141414 !important; border-color: rgba(59,130,246,.3) !important; }
 
+.cert-card-hover:hover { border-color: rgba(59,130,246,.4) !important; background: #141414 !important; }
+.cert-card-hover:hover > .absolute { opacity: 1 !important; }
+
+.partner-hover:hover { color: #9a9a9a !important; border-color: #2e2e2e !important; background: #141414 !important; }
+
+.proc-row-hover:hover { background: #141414 !important; }
+
 .step-hover { transition: background 0.2s; }
 .step-hover:hover { background: #1a1a1a !important; }
 
